@@ -2,7 +2,7 @@ import { Navbar, Container, Offcanvas, Nav, Button } from 'react-bootstrap'
 function MyNavbar() {
     return (
         <>
-            <Navbar key='lg' expand='lg' className="bg-body-tertiary mb-3 py-2">
+            <Navbar key='lg' expand='lg' className="bg-body-tertiary py-2">
                 <Container fluid className='mx-lg-2 mx-xl-8 mx-xxl-9'>
                     <Navbar.Brand href="#home" className='py-2 fs-4 me-0'>
                         <img
@@ -33,7 +33,7 @@ function MyNavbar() {
                                 <Nav.Link href='#action4' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Weekly Plans</Nav.Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
-                            <Button variant='dark' className='mt-3 mt-lg-0'>Login</Button>
+                            <Button variant='dark' className='mt-3 mt-lg-0 align-self-center py-2'>Login</Button>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container >
