@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap"
 import HomeHero from "./HomeHero"
+import PlanInfo from "./HomeInfo"
 
 function Home() {
     return (
@@ -8,6 +9,9 @@ function Home() {
                 <HomeHero />
             </Container>
             <h2 className="my-5 text-center">What's offering (siteName)</h2>
+            <Container>
+                <PlanInfo></PlanInfo>
+            </Container>
         </>
 
     )
