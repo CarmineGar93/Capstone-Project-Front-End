@@ -22,8 +22,8 @@ function MyFooter() {
                 <Row className="py-3 pt-0 d-flex align-items-center">
                     <Col md={7} lg={8} className="text-center text-md-start">
                         <div>
-                            © 2020 Copyright:
-                            <a href="#u">Carmine.com</a>
+                            © 2024 Copyright:
+                            <a href="#u" className="text-dark text-decoration-none"> Carmine.com</a>
                         </div>
                     </Col>
                     <Col md={5} lg={4} className="text-center text-md-end">
