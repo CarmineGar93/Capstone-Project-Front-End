@@ -74,19 +74,19 @@ function HomeInfo() {
                 array.map((section, index) => {
                     return (
                         <Row className="mb-5">
-                            <Col className={`d-flex align-items-center ${index % 2 === 1 ? "order-1" : ""}`}>
+                            <Col xs={12} md={6} className={`d-flex mb-3 mb-md-0 align-items-center ${index % 2 === 1 ? " order-md-1" : ""}`}>
                                 <div>
                                     <h2>{section.title}</h2>
                                     <p>{section.description}</p>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col xs={12} md={6}>
                                 {
                                     section.insertions.map(row => {
                                         return (
                                             <Row className="mb-4">
                                                 <Col xs={"auto"} className={`d-flex ${index % 2 === 1 ? "justify-content-start" : "justify-content-end"} align-items-start`}>
-                                                    <div className=" bg-body-secondary p-3 rounded-3 d-flex justify-content-center align-items-center">
+                                                    <div className=" bg-body-secondary p-2 p-xl-3 rounded-3 d-flex justify-content-center align-items-center">
                                                         <div>
                                                             <img src={row.icon} alt="" />
                                                         </div>
