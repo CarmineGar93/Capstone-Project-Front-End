@@ -1,6 +1,8 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from "react-router-dom";
 const LoginRegister = () => {
+    const location = useLocation()
     const [formData, setFormData] = useState({
         email: "",
         name: "",
@@ -8,7 +10,8 @@ const LoginRegister = () => {
         surname: "",
     });
     const { email, name, password, surname } = formData;
-    const [isLogin, setIsLogin] = useState(true);
+    const navigate = useNavigate()
+    const [isLogin, setIsLogin] = useState(location.pathname.includes("/login") ? true : false);
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
@@ -19,11 +22,13 @@ const LoginRegister = () => {
             password: "",
             surname: "",
         })
-        setIsLogin((prev) => !prev);
     };
+    useEffect(() => {
+        console.log(location)
+    })
     return (
         <>
-            <h1 className="text-center mt-8">Site Logo</h1>
+            <h1 className="text-center mt-8" onClick={() => navigate("/home")}>Site Logo</h1>
             <Row className="justify-content-center">
                 <Col xs={12} sm={10} md={8} lg={6} xl={4}>
                     <Card className="my-5 px-5 py-3">
@@ -37,7 +42,7 @@ const LoginRegister = () => {
                                 size="sm"
                                 onClick={handleToggle}
                                 className="ps-2 nav-link text-danger"
-                                href="#a"
+                                href={isLogin ? "/auth/register" : "/auth/login"}
                             >
                                 {isLogin ? "Create an account" : "Login"}
                             </a>
