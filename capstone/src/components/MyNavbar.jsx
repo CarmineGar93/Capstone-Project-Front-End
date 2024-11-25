@@ -1,11 +1,11 @@
 
 import { Navbar, Container, Offcanvas, Nav, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 function MyNavbar() {
     const navigate = useNavigate()
     return (
         <>
-            <Navbar key='lg' expand='lg' className="bg-body-tertiary py-2">
+            <Navbar key='lg' expand='lg' className="bg-white py-2">
                 <Container fluid className='mx-lg-2 mx-xl-8 mx-xxl-9'>
                     <Navbar.Brand href="#home" className='py-2 fs-4 me-0'>
                         <img
@@ -30,9 +30,9 @@ function MyNavbar() {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-center flex-grow-1 pe-3">
-                                <Nav.Link href="#action1" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Home</Nav.Link>
+                                <Link to={"/home"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Home</Link>
                                 <Nav.Link href="#action2" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your Products</Nav.Link>
-                                <Nav.Link href="#action3" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Recepies</Nav.Link>
+                                <Link to={"/recepies"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
                                 <Nav.Link href='#action4' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Weekly Plans</Nav.Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>

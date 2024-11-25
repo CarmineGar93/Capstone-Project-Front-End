@@ -3,8 +3,8 @@ import { HouseDoorFill, EnvelopeAtFill, TelephoneFill, Facebook, TwitterX, Googl
 
 function MyFooter() {
     return (
-        <footer className="bg-body-tertiary">
-            <Container className="p-4 pb-0">
+        <footer className="mt-7">
+            <Container className="p-4 pb-0 border-top" >
                 <Row>
                     <Col md={6} className=" mx-auto mt-3 text-center text-lg-start ">
                         <img src="http://placedog.net/100/100" alt="" className="img-fluid mb-4" />
@@ -18,7 +18,6 @@ function MyFooter() {
                         <p><TelephoneFill /> + 39 081 8043457</p>
                     </Col>
                 </Row>
-                <hr className="my-3" />
                 <Row className="py-3 pt-0 d-flex align-items-center">
                     <Col md={7} lg={8} className="text-center text-md-start">
                         <div>
@@ -33,7 +32,7 @@ function MyFooter() {
                         <a href="#u" className="btn btn-floating m-1" role="button"><Instagram /></a>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
         </footer >
     )
 }
