@@ -17,8 +17,8 @@ function RecepiesMain() {
         )
     }
     return (
-        <Card className="p-4">
-            <h1>Recepies</h1>
+        <Card className="px-4 py-5">
+            <h1 className="ps-2">Recepies</h1>
             <div className="d-flex justify-content-end">
                 <h3>Order by:</h3>
                 <Form.Select className="w-25 ms-3">
