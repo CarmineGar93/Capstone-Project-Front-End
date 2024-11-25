@@ -1,11 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap"
+import RecepiesMain from "./RecepiesMain"
 
 function Recepies() {
     return (
-        <Container>
+        <Container className="my-5">
             <Row>
-                <Col xs={12} md={8}></Col>
-                <Col xs={12} md={4}></Col>
+                <Col xs={12} md={9}><RecepiesMain /></Col>
+                <Col xs={12} md={3}></Col>
             </Row>
         </Container>
     )
