@@ -1,5 +1,12 @@
+import { useEffect } from 'react'
 import { Navbar, Container, Offcanvas, Nav, Button } from 'react-bootstrap'
+import { useLocation, useNavigate } from 'react-router-dom'
 function MyNavbar() {
+    const navigate = useNavigate()
+    const location = useLocation()
+    useEffect(() => {
+        console.log(location)
+    }, [])
     return (
         <>
             <Navbar key='lg' expand='lg' className="bg-body-tertiary py-2">
@@ -33,7 +40,7 @@ function MyNavbar() {
                                 <Nav.Link href='#action4' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Weekly Plans</Nav.Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
-                            <Button variant='dark' className='mt-3 mt-lg-0 align-self-center py-2'>Login</Button>
+                            <Button variant='dark' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth')}>Login</Button>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container >
