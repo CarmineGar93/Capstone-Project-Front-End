@@ -17,7 +17,7 @@ function RecepiesMain() {
         )
     }
     return (
-        <Card className="px-4 py-5">
+        <Card className="px-4 py-5 border-0">
             <h1 className="ps-2">Recepies</h1>
             <div className="d-flex justify-content-end">
                 <h3>Order by:</h3>

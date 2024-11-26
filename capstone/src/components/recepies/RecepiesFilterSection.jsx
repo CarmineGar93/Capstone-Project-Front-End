@@ -2,7 +2,7 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap"
 
 function RecepiesFilterSection() {
     return (
-        <Card className="p-4">
+        <Card className="p-4 border-0">
             <h3>Filter</h3>
             <Container fluid className="p-0 my-3">
                 <Row className="mb-3 gx-0">

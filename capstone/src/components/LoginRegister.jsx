@@ -1,5 +1,5 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
 const LoginRegister = () => {
     const location = useLocation()
@@ -23,15 +23,12 @@ const LoginRegister = () => {
             surname: "",
         })
     };
-    useEffect(() => {
-        console.log(location)
-    })
     return (
         <>
             <h1 className="text-center mt-8" onClick={() => navigate("/home")}>Site Logo</h1>
             <Row className="justify-content-center">
                 <Col xs={12} sm={10} md={8} lg={6} xl={4}>
-                    <Card className="my-5 px-5 py-3">
+                    <Card className="my-5 px-5 py-3 border-0">
                         <h2 className="mt-3">{isLogin ? "Login" : "Register"}</h2>
                         <div className="mb-2 d-flex justify-content-end">
                             <p className="mb-0">
