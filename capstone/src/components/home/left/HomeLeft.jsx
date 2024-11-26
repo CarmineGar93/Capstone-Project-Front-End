@@ -1,11 +1,12 @@
 import { Col, Row } from "react-bootstrap"
 import ProfileCard from "./ProfileCard"
+import GroceryPanel from "./GroceryPanel"
 
 function HomeLeft() {
     return (
-        <Row>
+        <Row className="gy-4">
             <Col xs={12}><ProfileCard /></Col>
-            <Col xs={12}></Col>
+            <Col xs={12}><GroceryPanel /></Col>
         </Row>
     )
 }
