@@ -1,19 +1,15 @@
-import { Container } from "react-bootstrap"
-import HomeHero from "./HomeHero"
-import PlanInfo from "./HomeInfo"
+import { Col, Container, Row } from "react-bootstrap";
+import HomeLeft from "./left/HomeLeft";
 
 function Home() {
     return (
-        <>
-            <Container fluid className="px-lg-3 px-xl-6 px-xxl-10 custom-background">
-                <HomeHero />
-            </Container>
-            <h2 className="my-5 text-center">What's offering (siteName)</h2>
-            <Container>
-                <PlanInfo></PlanInfo>
-            </Container>
-        </>
-
+        <Container className="my-5">
+            <Row className="gx-3">
+                <Col xs={3}><HomeLeft /></Col>
+                <Col xs={6}></Col>
+                <Col xs={3}></Col>
+            </Row>
+        </Container>
     )
 }
 

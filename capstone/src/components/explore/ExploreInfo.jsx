@@ -1,7 +1,7 @@
 import { Row, Col } from "react-bootstrap"
 import globe from './globe.svg'
 
-function HomeInfo() {
+function ExploreInfo() {
     const array = [
         {
             title: "Week planification",
@@ -110,4 +110,4 @@ function HomeInfo() {
     )
 }
 
-export default HomeInfo
+export default ExploreInfo

@@ -1,7 +1,7 @@
 import { Col, Row, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-function HomeHero() {
+function ExploreHero() {
     const navigate = useNavigate()
     return (
         <Row className="py-7 py-md-10 position-relative z-1">
@@ -17,4 +17,4 @@ function HomeHero() {
     )
 }
 
-export default HomeHero
+export default ExploreHero
