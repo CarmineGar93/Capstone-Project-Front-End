@@ -10,7 +10,8 @@ function ExploreHero() {
                     <h1>Don't know what to eat today?</h1>
                     <h1 className="mb-4">With us you don't have to think about it anymore</h1>
                     <p className="mb-5 fs-4">Thanks to (siteName) plan your meals in advance choosing amongst thousands recepies and you will not loose time anymore choosing what to eat. Useful..right?</p>
-                    <Button variant="dark" className="py-2" onClick={() => navigate("/auth/register")}>Register</Button></div>
+                    <Button variant="dark" className="py-2" onClick={() => navigate("/auth/register")}>Register</Button>
+                </div>
 
             </Col>
         </Row>

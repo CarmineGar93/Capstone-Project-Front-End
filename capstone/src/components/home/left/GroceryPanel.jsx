@@ -18,7 +18,7 @@ function GroceryPanel() {
     }]
     return (
         <Card className="border-0">
-            <h5 className="mb-4 bg-body-secondary shadow-sm p-3 text-center">Your active grocery list</h5>
+            <h5 className="mb-4 bg-danger shadow-sm p-2 text-center text-white">Your active grocery list</h5>
             <div className="p-3">
                 {
                     groceries.length === 0 ? (
@@ -42,8 +42,8 @@ function GroceryPanel() {
                     )
                 }
             </div>
-            <div className="text-end p-3">
-                <Button variant="dark">Grocery management</Button>
+            <div className="text-center p-3">
+                <Button variant="danger">Grocery management</Button>
             </div>
 
 

@@ -36,7 +36,7 @@ function MyNavbar() {
                                 <Nav.Link href='#action4' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Weekly Plans</Nav.Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
-                            <Button variant='dark' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth/login')}>Login</Button>
+                            <Button variant='danger' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth/login')}>Login</Button>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container >
