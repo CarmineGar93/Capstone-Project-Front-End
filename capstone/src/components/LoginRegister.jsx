@@ -102,7 +102,7 @@ const LoginRegister = () => {
                                 className={`m${isLogin ? "b" : "y"}-4`}
                                 required={isLogin ? false : true}
                             />
-                            <Button variant="dark" className="btn btn-block w-100">
+                            <Button variant="danger" className="btn btn-block w-100">
                                 Sign {isLogin ? "In" : "Up"}
                             </Button>
                         </Form>
