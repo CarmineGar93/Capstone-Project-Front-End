@@ -5,7 +5,8 @@ function CalendarPlan() {
     const meals = ["Breakfast", "Lunch", "Dinner"]
     return (
         <Card className="border-0">
-            <h5 className="mb-1 bg-white shadow-sm p-3 text-center">Weekly active plan</h5>
+            <h5 className="mb-3 bg-white shadow-sm p-3 text-center">Weekly active plan</h5>
+            <h6 className="text-center">25 Nov - 1 Dec</h6>
             <Accordion flush className="mb-3">
                 {
                     days.map((day, index) => {
