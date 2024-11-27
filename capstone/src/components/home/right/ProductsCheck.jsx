@@ -14,7 +14,7 @@ function ProductsCheck() {
                         </Alert>
                     ) : (
                         <Alert variant="success" className="mb-0">
-                            Your products are aligned with your weekley plan
+                            Your products are aligned with your weekly plan
                         </Alert>
                     )
                 }
