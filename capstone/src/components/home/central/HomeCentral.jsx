@@ -6,7 +6,7 @@ function HomeCentral() {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Dicember']
     const today = new Date()
     return (
-        <Card className="border-0 p-4">
+        <Card className="border-0 px-3 px-xl-4 px-xxl-5 py-4">
             <h2>Today</h2>
             <h2>{`${days[today.getDay()]} ${today.getDate()} ${months[today.getMonth()]}`}</h2>
             <div className="my-4">

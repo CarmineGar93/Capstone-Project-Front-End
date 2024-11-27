@@ -17,7 +17,7 @@ function GroceryPanel() {
         unit: "gr"
     }]
     return (
-        <Card className="border-0">
+        <Card className="border-0  d-none d-xl-block">
             <h5 className="mb-4 bg-white shadow-sm p-3 text-center">Your active grocery list</h5>
             <div className="p-3">
                 {

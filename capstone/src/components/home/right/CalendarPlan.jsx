@@ -4,7 +4,7 @@ function CalendarPlan() {
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const meals = ["Breakfast", "Lunch", "Dinner"]
     return (
-        <Card className="border-0">
+        <Card className="border-0 d-none d-md-block">
             <h5 className="mb-3 bg-white shadow-sm p-3 text-center">Weekly active plan</h5>
             <h6 className="text-center">25 Nov - 1 Dec</h6>
             <Accordion flush className="mb-3">
