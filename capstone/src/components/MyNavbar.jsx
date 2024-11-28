@@ -33,7 +33,7 @@ function MyNavbar() {
                                 <Link to={"/home"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Home</Link>
                                 <Nav.Link href="#action2" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your Products</Nav.Link>
                                 <Link to={"/recepies"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
-                                <Nav.Link href='#action4' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Weekly Plans</Nav.Link>
+                                <Link to={"/plans"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Weekly Plans</Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
                             <Button variant='danger' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth/login')}>Login</Button>

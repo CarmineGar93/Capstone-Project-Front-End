@@ -6,6 +6,7 @@ import LoginRegister from './components/LoginRegister';
 import Layout from './components/Layout';
 import Recepies from './components/recepies/Recepies';
 import Home from './components/home/Home';
+import WeeklyPlans from './components/plans/WeeklyPlans';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/home' element={<Layout child={<Home />} />} />
         <Route path='/auth/*' element={<LoginRegister />} />
         <Route path='/recepies' element={<Layout child={<Recepies />} />} />
+        <Route path='/plans' element={<Layout child={<WeeklyPlans />} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,12 +6,12 @@ function MyFooter() {
         <footer className="mt-7">
             <Container className="p-4 pb-0 border-top" >
                 <Row>
-                    <Col md={6} className=" mx-auto mt-3 text-center text-lg-start ">
+                    <Col md={6} className=" mx-auto mt-3 text-center text-md-start ">
                         <img src="http://placedog.net/100/100" alt="" className="img-fluid mb-4" />
                         <h6>siteName</h6>
                     </Col>
                     <hr className="w-100 clearfix d-md-none" />
-                    <Col md={6} className=" mx-auto mt-3 text-center text-lg-end">
+                    <Col md={6} className=" mx-auto mt-3 text-center text-md-end">
                         <h6 className="mb-4">CONTACT</h6>
                         <p><HouseDoorFill /> Via IP 23, Sorrento 80067, NA</p>
                         <p><EnvelopeAtFill /> info@siteName.com</p>
