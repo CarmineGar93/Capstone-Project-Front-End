@@ -23,6 +23,62 @@ const LoginRegister = () => {
             surname: "",
         })
     };
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (isLogin) {
+            const bodyLogin = {
+                email: formData.email,
+                password: formData.password
+            }
+            try {
+                const response = await fetch("http://localhost:3001/auth/login", {
+                    method: "POST",
+                    body: JSON.stringify(bodyLogin),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+
+                })
+                if (response.ok) {
+                    const data = await response.json()
+                    console.log(data)
+                    localStorage.setItem("token", data.token)
+                    alert("Login successful")
+                    navigate("/home")
+
+                } else {
+                    const error = await response.json()
+                    throw new Error(error.message)
+                }
+            } catch (err) {
+                alert(err)
+            }
+        } else {
+            try {
+                const response = await fetch("http://localhost:3001/auth/register", {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+
+                })
+                if (response.ok) {
+                    const data = await response.json()
+                    console.log(data)
+                    localStorage.setItem("token", data.token)
+                    alert("Login successful")
+                    navigate("/home")
+
+                } else {
+                    const error = await response.json()
+                    throw new Error(error.message)
+                }
+            } catch (err) {
+                alert(err)
+            }
+        }
+    }
     return (
         <>
             <h1 className="text-center mt-8" onClick={() => navigate("/explore")}>Site Logo</h1>
@@ -45,7 +101,7 @@ const LoginRegister = () => {
                             </a>
 
                         </div>
-                        <Form>
+                        <Form onSubmit={(e) => handleSubmit(e)}>
                             {!isLogin && (
                                 <Form.Group className="mb-3">
                                     <Form.Control
@@ -102,7 +158,7 @@ const LoginRegister = () => {
                                 className={`m${isLogin ? "b" : "y"}-4`}
                                 required={isLogin ? false : true}
                             />
-                            <Button variant="danger" className="btn btn-block w-100">
+                            <Button variant="danger" type="submit" className="btn btn-block w-100">
                                 Sign {isLogin ? "In" : "Up"}
                             </Button>
                         </Form>
