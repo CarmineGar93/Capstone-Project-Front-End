@@ -1,8 +1,17 @@
 import { Container } from "react-bootstrap"
 import ExploreHero from "./ExploreHero"
 import PlanInfo from "./ExploreInfo"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Explore() {
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (token) {
+            navigate("/home")
+        }
+    })
     return (
         <>
             <Container fluid className="px-lg-3 px-xl-6 px-xxl-10 custom-background">

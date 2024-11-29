@@ -1,8 +1,17 @@
 import { Col, Container, Row } from "react-bootstrap"
 import RecepiesMain from "./RecepiesMain"
 import RecepiesFilterSection from "./RecepiesFilterSection"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Recepies() {
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!token) {
+            navigate("/auth/login")
+        }
+    })
     return (
         <Container className="my-5">
             <Row className="g-3">

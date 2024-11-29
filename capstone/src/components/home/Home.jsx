@@ -5,7 +5,16 @@ import GroceryPanel from "./left/GroceryPanel";
 import CalendarPlan from "./right/CalendarPlan";
 import ProductsCheck from "./right/ProductsCheck";
 import HomeCentral from "./central/HomeCentral";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function Home() {
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!token) {
+            navigate("/auth/login")
+        }
+    })
     return (
         <Container className="my-5">
             <Row className="g-3">

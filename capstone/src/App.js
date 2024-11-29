@@ -8,6 +8,7 @@ import Recepies from './components/recepies/Recepies';
 import Home from './components/home/Home';
 import WeeklyPlans from './components/plans/WeeklyPlans';
 
+
 function App() {
   return (
     <BrowserRouter>

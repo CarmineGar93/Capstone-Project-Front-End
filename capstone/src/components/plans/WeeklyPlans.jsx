@@ -2,6 +2,8 @@ import { Col, Container, Row } from "react-bootstrap"
 import WeeklyPlansLeft from "./WeeklyPlansLeft"
 import WeeklyPlanChoosen from "./WeeklyPlanChoosen"
 import { useState } from "react"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function WeeklyPlans() {
     const plans = [{
@@ -26,6 +28,13 @@ function WeeklyPlans() {
         EXPIRED: "secondary"
     }
     const [selected, setSelected] = useState(plans.filter(plan => plan.state === "ACTIVE")[0])
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!token) {
+            navigate("/auth/login")
+        }
+    })
     return (
         <Container className="my-5">
             <Row className="g-3">
