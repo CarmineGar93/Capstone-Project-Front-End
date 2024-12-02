@@ -6,6 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RetrievePlansAction, SetSelectedPlanAction } from "../../redux/actions";
 
+export function transformDate(date) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const dateParsed = new Date(date)
+    return `${dateParsed.getDate()} ${months[dateParsed.getMonth()]}`
+}
+
 function WeeklyPlans() {
     const dispatch = useDispatch()
     const plans = useSelector(state => state.plans.myplans)
@@ -22,6 +28,7 @@ function WeeklyPlans() {
             navigate("/auth/login")
         } else {
             dispatch(RetrievePlansAction(token, 0))
+            dispatch(SetSelectedPlanAction(null))
         }
     }, [])
     useEffect(() => {

@@ -2,6 +2,7 @@ import { Badge, Button, Card } from "react-bootstrap"
 import { Calendar } from "react-bootstrap-icons"
 import { useDispatch } from "react-redux"
 import { SetSelectedPlanAction } from "../../redux/actions"
+import { transformDate } from "./WeeklyPlans"
 
 function WeeklyPlansLeft({ selected, plans, badgeColors }) {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                                 plans.content.map(plan => {
                                     return (
                                         <div className={`border-start border-3 p-2 mb-3 align-content-center ${selected.weeklyPlanId === plan.weeklyPlanId ? "border text-info rounded-2" : ""}`} onClick={() => dispatch(SetSelectedPlanAction(plan))}>
-                                            <h6 className="text-secondary mb-0">{plan.startDate} - {plan.endDate} <Badge bg={badgeColors[plan.status]}>{plan.status}</Badge></h6>
+                                            <h6 className="text-secondary mb-0">{transformDate(plan.startDate)} - {transformDate(plan.endDate)} <Badge bg={badgeColors[plan.status]}>{plan.status}</Badge></h6>
                                         </div>
                                     )
                                 })
