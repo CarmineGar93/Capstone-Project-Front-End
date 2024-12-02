@@ -20,6 +20,7 @@ function Home() {
         } else {
             dispatch(RetrieveUserAction(token, navigate))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token])
     return (
         <Container className="my-5">
