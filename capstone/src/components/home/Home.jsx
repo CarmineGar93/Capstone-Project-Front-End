@@ -18,7 +18,7 @@ function Home() {
         if (!token) {
             navigate("/auth/login")
         } else {
-            dispatch(RetrieveUserAction(token))
+            dispatch(RetrieveUserAction(token, navigate))
         }
     }, [token])
     return (
