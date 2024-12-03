@@ -28,8 +28,12 @@ function WeeklyPlans() {
             navigate("/auth/login")
         } else {
             dispatch(RetrievePlansAction(token, 0))
+        }
+        return () => {
+            console.log("Sono stato disattivato")
             dispatch(SetSelectedPlanAction(null))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
         if (plans) {

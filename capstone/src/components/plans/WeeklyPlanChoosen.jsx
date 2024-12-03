@@ -30,7 +30,10 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                             <Accordion.Item className="border-0 border-bottom mb-2">
                                                                                 <Accordion.Header><p className="mb-0 fs-5 px-0">{meal.type.toLowerCase()}</p></Accordion.Header>
                                                                                 <Accordion.Body>
-                                                                                    {meal.recipe.name}
+                                                                                    <div className="d-flex align-items-center">
+                                                                                        <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
+                                                                                        <p className="mb-0">{meal.recipe.name}</p>
+                                                                                    </div>
                                                                                 </Accordion.Body>
                                                                             </Accordion.Item>
                                                                         ) : (
