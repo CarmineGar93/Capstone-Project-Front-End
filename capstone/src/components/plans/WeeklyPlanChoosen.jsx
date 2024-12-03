@@ -1,11 +1,16 @@
 import { Badge, Card, Accordion } from "react-bootstrap"
 import { Plus } from "react-bootstrap-icons"
 import { transformDate } from "./WeeklyPlans"
+import { useState } from "react"
+import SearchRecipeModal from "./SearchRecipeModal"
 
 function WeeklyPlanChoosen({ selected, badgeColors }) {
+    const [show, setShow] = useState(false)
+    const [mealSelected, setMealSelected] = useState(null)
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     return (
         <>
+            <SearchRecipeModal show={show} onHide={() => setShow(false)} meal={mealSelected} />
             {
                 selected && (
                     <Card className="border-0 p-4">
@@ -39,7 +44,10 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                         ) : (
                                                                             <div className="border-bottom border-1 d-flex justify-content-between align-items-center mb-2 px-3" key={meal.mealId}>
                                                                                 <p className="mb-0 fs-5">{meal.type.toLowerCase()}</p>
-                                                                                <button className="btn-experience bg-white border-0 rounded-circle p-2" onClick={() => alert(`Day ${days[daily.day]}, meal ${meal.type}`)}><Plus size={25} /></button>
+                                                                                <button className="btn-experience bg-white border-0 rounded-circle p-2" onClick={() => {
+                                                                                    setMealSelected(meal.mealId)
+                                                                                    setShow(true)
+                                                                                }}><Plus size={25} /></button>
                                                                             </div>
                                                                         )
                                                                     }

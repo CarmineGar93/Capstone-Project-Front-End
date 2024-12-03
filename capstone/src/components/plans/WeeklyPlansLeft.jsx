@@ -46,7 +46,7 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                                     {
                                         plans.content.map(plan => {
                                             return (
-                                                <div className={`border-start border-3 p-2 mb-3 align-content-center ${selected.weeklyPlanId === plan.weeklyPlanId ? "border text-info rounded-2" : ""}`} onClick={() => dispatch(SetSelectedPlanAction(plan))}>
+                                                <div className={`border-start border-3 p-2 mb-3 align-content-center ${selected.weeklyPlanId === plan.weeklyPlanId ? "border text-info rounded-2" : ""}`} onClick={() => dispatch(SetSelectedPlanAction(plan))} key={plan.weeklyPlanId}>
                                                     <h6 className="text-secondary mb-0">{transformDate(plan.startDate)} - {transformDate(plan.endDate)} <Badge bg={badgeColors[plan.status]}>{plan.status}</Badge></h6>
                                                 </div>
                                             )
@@ -55,7 +55,7 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                                 </div>
 
                             ) : (
-                                <div className="mt-5">
+                                <div className="my-5">
                                     <h3>There are no weekly plans</h3>
                                 </div>
                             )
