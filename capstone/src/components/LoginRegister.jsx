@@ -11,7 +11,7 @@ const LoginRegister = () => {
     });
     const { email, name, password, surname } = formData;
     const navigate = useNavigate()
-    const [isLogin, setIsLogin] = useState(location.pathname.includes("/login") ? true : false);
+    const [isLogin] = useState(location.pathname.includes("/login") ? true : false);
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
