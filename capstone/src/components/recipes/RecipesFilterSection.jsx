@@ -1,6 +1,6 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap"
 
-function RecepiesFilterSection() {
+function RecipesFilterSection() {
     return (
         <Card className="p-4 border-0">
             <h3>Filter</h3>
@@ -29,7 +29,7 @@ function RecepiesFilterSection() {
                 </Row>
                 <Row className="mb-3">
                     <Col xs={12}>
-                        <h5>Recepie type</h5>
+                        <h5>Recipe type</h5>
                     </Col>
                 </Row>
                 <Row className="gy-3 gx-1 mb-5">
@@ -64,4 +64,4 @@ function RecepiesFilterSection() {
     )
 }
 
-export default RecepiesFilterSection
+export default RecipesFilterSection
