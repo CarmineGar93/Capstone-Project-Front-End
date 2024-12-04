@@ -16,6 +16,12 @@ function SearchRecipeModal({ onHide, show, meal }) {
     const indexFirst = indexLast - recipePerPage
     const currentRecipes = recipes.slice(indexFirst, indexLast);
     const [selectedRecipe, setSelectedRecipe] = useState(null)
+    const resetStates = () => {
+        setValue("")
+        setRecipes([])
+        setSelectedRecipe(null)
+        setCurrentPage(1)
+    }
     const addReceipt = async () => {
         try {
             const response = await fetch("http://localhost:3001/meals/" + meal, {
@@ -30,9 +36,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
             })
             if (response.ok) {
                 alert("Recipe added successfully")
-                setValue("")
-                setRecipes([])
-                setSelectedRecipe(null)
+                resetStates()
                 dispatch(RetrievePlansAction(token, 0))
                 onHide()
             } else {
@@ -104,7 +108,10 @@ function SearchRecipeModal({ onHide, show, meal }) {
                 </Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={onHide}>Close</Button>
+                <Button onClick={() => {
+                    resetStates()
+                    onHide()
+                }}>Close</Button>
                 <Button variant='danger' onClick={() => addReceipt()}>Add receipt</Button>
             </Modal.Footer>
         </Modal>

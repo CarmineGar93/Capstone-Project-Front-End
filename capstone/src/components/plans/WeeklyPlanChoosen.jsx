@@ -8,6 +8,12 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
     const [show, setShow] = useState(false)
     const [mealSelected, setMealSelected] = useState(null)
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    const valuateDate = (day) => {
+        const dailyPlanDate = new Date(selected.startDate)
+        dailyPlanDate.setDate(dailyPlanDate.getDate() + day)
+        return new Date() >= dailyPlanDate
+    }
+
     return (
         <>
             <SearchRecipeModal show={show} onHide={() => setShow(false)} meal={mealSelected} />
@@ -22,7 +28,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                             {
                                 selected.dailyPlans.map(daily => {
                                     return (
-                                        <Accordion.Item eventKey={daily.dailyPlanId} className="border-0 border-bottom">
+                                        <Accordion.Item eventKey={daily.dailyPlanId} className="border-0 border-bottom" key={daily.dailyPlanId}>
                                             <Accordion.Header><h5 className="mb-0">{days[daily.day]}</h5></Accordion.Header>
                                             <Accordion.Body className="px-2 py-4">
                                                 <Accordion>
@@ -32,7 +38,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                 <>
                                                                     {
                                                                         meal.recipe ? (
-                                                                            <Accordion.Item className="border-0 border-bottom mb-2">
+                                                                            <Accordion.Item className="border-0 border-bottom mb-2" key={meal.mealId} eventKey={meal.mealId}>
                                                                                 <Accordion.Header><p className="mb-0 fs-5 px-0">{meal.type.toLowerCase()}</p></Accordion.Header>
                                                                                 <Accordion.Body>
                                                                                     <div className="d-flex align-items-center">
@@ -44,10 +50,10 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                         ) : (
                                                                             <div className="border-bottom border-1 d-flex justify-content-between align-items-center mb-2 px-3" key={meal.mealId}>
                                                                                 <p className="mb-0 fs-5">{meal.type.toLowerCase()}</p>
-                                                                                <button className="btn-experience bg-white border-0 rounded-circle p-2" onClick={() => {
+                                                                                <button className={`${!valuateDate(daily.day) && "btn-experience"} bg-white border-0 rounded-circle p-2`} onClick={() => {
                                                                                     setMealSelected(meal.mealId)
                                                                                     setShow(true)
-                                                                                }}><Plus size={25} /></button>
+                                                                                }} disabled={valuateDate(daily.day)}><Plus size={25} /></button>
                                                                             </div>
                                                                         )
                                                                     }
