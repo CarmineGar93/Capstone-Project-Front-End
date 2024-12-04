@@ -38,7 +38,7 @@ function HomeCentral() {
                                                         <Card.Body>
                                                             <Card.Title className="fs-3">{meal.recipe.name}</Card.Title>
                                                             <div className="text-end mt-3">
-                                                                <Button variant="danger">Recepie information</Button>
+                                                                <Button variant="danger">Recipe information</Button>
                                                             </div>
 
                                                         </Card.Body>
