@@ -11,7 +11,14 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
     const valuateDate = (day) => {
         const dailyPlanDate = new Date(selected.startDate)
         dailyPlanDate.setDate(dailyPlanDate.getDate() + day)
-        return new Date() >= dailyPlanDate
+        const today = new Date()
+        const firstYear = dailyPlanDate.getFullYear();
+        const firstMonth = dailyPlanDate.getMonth();
+        const firstDay = dailyPlanDate.getDate();
+        const secondYear = today.getFullYear();
+        const secondMonth = today.getMonth();
+        const secondDay = today.getDate();
+        return firstYear === secondYear && firstMonth === secondMonth && firstDay === secondDay ? false : today > dailyPlanDate
     }
 
     return (
@@ -39,7 +46,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                     {
                                                                         meal.recipe ? (
                                                                             <Accordion.Item className="border-0 border-bottom mb-2" key={meal.mealId} eventKey={meal.mealId}>
-                                                                                <Accordion.Header><p className="mb-0 fs-5 px-0">{meal.type.toLowerCase()}</p></Accordion.Header>
+                                                                                <Accordion.Header><p className="mb-0 fs-5 px-0">{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</p></Accordion.Header>
                                                                                 <Accordion.Body>
                                                                                     <div className="d-flex align-items-center">
                                                                                         <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
@@ -49,7 +56,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                             </Accordion.Item>
                                                                         ) : (
                                                                             <div className="border-bottom border-1 d-flex justify-content-between align-items-center mb-2 px-3" key={meal.mealId}>
-                                                                                <p className="mb-0 fs-5">{meal.type.toLowerCase()}</p>
+                                                                                <p className="mb-0 fs-5">{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</p>
                                                                                 <button className={`${!valuateDate(daily.day) && "btn-experience"} bg-white border-0 rounded-circle p-2`} onClick={() => {
                                                                                     setMealSelected(meal.mealId)
                                                                                     setShow(true)

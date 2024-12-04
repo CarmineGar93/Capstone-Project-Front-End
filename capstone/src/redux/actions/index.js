@@ -1,10 +1,38 @@
 export const RETRIEVE_USER = 'RETRIEVE_USER'
 export const RETRIEVE_PLANS = 'RETRIEVE_PLANS'
 export const SET_SELECTED = 'SET_SELECTED'
+export const RETRIEVE_ACTIVE_PLAN = 'RETRIEVE_ACTIVE_PLAN'
+
+
 export const SetSelectedPlanAction = (selectedPlan) => {
     return {
         type: SET_SELECTED,
         payload: selectedPlan,
+    }
+}
+
+export const RetrieveActivePlan = (token) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch("http://localhost:3001/plans/myplans/active", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.ok) {
+                const data = await response.json()
+                console.log(data)
+                dispatch({
+                    type: RETRIEVE_ACTIVE_PLAN,
+                    payload: data
+                })
+            } else {
+                const error = await response.json()
+                throw new Error(error.message)
+            }
+        } catch (err) {
+            alert(err)
+        }
     }
 }
 

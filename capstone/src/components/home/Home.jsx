@@ -8,7 +8,7 @@ import HomeCentral from "./central/HomeCentral";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RetrieveUserAction } from "../../redux/actions";
+import { RetrieveActivePlan, RetrieveUserAction } from "../../redux/actions";
 function Home() {
     const token = localStorage.getItem("token")
     const user = useSelector(state => state.user.logged)
@@ -19,6 +19,7 @@ function Home() {
             navigate("/auth/login")
         } else {
             dispatch(RetrieveUserAction(token, navigate))
+            dispatch(RetrieveActivePlan(token))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token])
