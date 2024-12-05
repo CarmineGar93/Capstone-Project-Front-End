@@ -36,7 +36,12 @@ function HomeCentral() {
                                                     <Card className="mb-4">
                                                         <Card.Img variant="top" src={meal.recipe.imageUrl} />
                                                         <Card.Body>
-                                                            <Card.Title className="fs-3">{meal.recipe.name}</Card.Title>
+                                                            <Card.Title className="fs-3 px-3 py-1">{meal.recipe.name}</Card.Title>
+                                                            <Card.Body>
+                                                                <p className="fs-5 text-secondary">Tot calories: {meal.recipe.calories} kcal</p>
+                                                                <p className="fs-5 text-secondary">Ready in: {meal.recipe.readyIn === 0 ? "N/A" : `${meal.recipe.readyIn} minutes`}</p>
+                                                                <p className="fs-5 text-secondary">Ingredients: {meal.recipe.ingredientList.length}</p>
+                                                            </Card.Body>
                                                             <div className="text-end mt-3">
                                                                 <Button variant="danger">Recipe information</Button>
                                                             </div>

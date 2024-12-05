@@ -85,13 +85,13 @@ function SearchRecipeModal({ onHide, show, meal }) {
             <Modal.Body>
                 <Form.Control type='text' placeholder='Search a recipe' className=' rounded-4 mb-2' value={value} onChange={(e) => setValue(e.target.value)} />
                 <Container>
-                    <Row xs={3}>
+                    <Row xs={3} className='gy-3 mb-3'>
                         {
                             currentRecipes.map(recipe => {
                                 return (
-                                    <Col key={recipe.reference}>
-                                        <Card className={`p-0 border-0${selectedRecipe === recipe.reference ? "border-2 border-danger" : ""}`} onClick={() => setSelectedRecipe(recipe.reference)}>
-                                            <Card.Img src={recipe.image} className="img-fluid" onError={function (e) {
+                                    <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""}`}>
+                                        <Card className={`p-0 border-0`} onClick={() => setSelectedRecipe(recipe.reference)}>
+                                            <Card.Img src={recipe.image} height={200} className="w-100 rounded-5" onError={function (e) {
                                                 e.currentTarget.src = "http://placedog.net/100/100"
                                             }} />
                                             <Card.Body className="px-0">
