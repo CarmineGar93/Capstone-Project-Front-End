@@ -32,7 +32,7 @@ function MyNavbar() {
                             <Nav className="justify-content-center flex-grow-1 pe-3">
                                 <Link to={"/home"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Home</Link>
                                 <Nav.Link href="#action2" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your Products</Nav.Link>
-                                <Link to={"/recepies"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
+                                <Link to={"/recipes"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
                                 <Link to={"/plans"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Weekly Plans</Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
