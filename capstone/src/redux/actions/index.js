@@ -2,6 +2,7 @@ export const RETRIEVE_USER = 'RETRIEVE_USER'
 export const RETRIEVE_PLANS = 'RETRIEVE_PLANS'
 export const SET_SELECTED = 'SET_SELECTED'
 export const RETRIEVE_ACTIVE_PLAN = 'RETRIEVE_ACTIVE_PLAN'
+export const RETRIEVE_FAVOURITES = 'RETRIEVE_FAVOURITES'
 
 
 export const SetSelectedPlanAction = (selectedPlan) => {
@@ -10,6 +11,33 @@ export const SetSelectedPlanAction = (selectedPlan) => {
         payload: selectedPlan,
     }
 }
+
+export const RetrieveFavouritesAction = (token) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch("http://localhost:3001/users/me/favourites", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.ok) {
+                const data = await response.json()
+                console.log(data)
+                dispatch({
+                    type: RETRIEVE_FAVOURITES,
+                    payload: data
+                })
+            } else {
+                const error = await response.json()
+                throw new Error(error.message)
+            }
+        } catch (err) {
+            alert(err)
+        }
+    }
+}
+
+
 
 export const RetrieveActivePlan = (token) => {
     return async (dispatch) => {

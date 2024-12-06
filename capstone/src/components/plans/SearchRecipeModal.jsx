@@ -89,12 +89,12 @@ function SearchRecipeModal({ onHide, show, meal }) {
                         {
                             currentRecipes.map(recipe => {
                                 return (
-                                    <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""}`}>
+                                    <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""} rounded-5 py-3`}>
                                         <Card className={`p-0 border-0`} onClick={() => setSelectedRecipe(recipe.reference)}>
-                                            <Card.Img src={recipe.image} height={200} className="w-100 rounded-5" onError={function (e) {
+                                            <Card.Img src={recipe.image} height={200} className="w-100" onError={function (e) {
                                                 e.currentTarget.src = "http://placedog.net/100/100"
                                             }} />
-                                            <Card.Body className="px-0">
+                                            <Card.Body className="px-0 py-1">
                                                 <Card.Title>{recipe.title}</Card.Title>
                                             </Card.Body>
 

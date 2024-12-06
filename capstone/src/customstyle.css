@@ -26,3 +26,21 @@ body {
     background-color: #F3F3F3 !important;
     cursor: pointer;
 }
+
+.recipe-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    aspect-ratio: 3/4;
+    background-image: var(--url)
+}
+
+.recipe-background:hover {
+    background-size: 250%;
+    cursor: pointer;
+}
+
+.like-button:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}

@@ -1,21 +1,7 @@
-import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Card, Container, Form, Row } from "react-bootstrap";
+import RecipeCard from "./RecipeCard";
 
-function RecipesMain() {
-    const cards = []
-    for (let i = 0; i < 12; i++) {
-        cards.push(
-            <Col>
-                <Card className="p-0 border-0">
-                    <Card.Img src="https://placedog.net/200/250" className="img-fluid" />
-                    <Card.Body className="px-0">
-                        <Card.Title>Recipe name</Card.Title>
-                        <Card.Text>Ingredients - Time</Card.Text>
-                    </Card.Body>
-
-                </Card>
-            </Col>
-        )
-    }
+function RecipesMain({ recipes }) {
     return (
         <Card className="px-4 py-5 border-0">
             <h1 className="ps-2">Recipes</h1>
@@ -29,10 +15,12 @@ function RecipesMain() {
                 </Form.Select>
             </div>
             <Container fluid className="my-3">
-                <Row xs={1} sm={2} lg={3} xl={4} className="gx-3">
+                <Row xs={1} sm={2} lg={3} xl={4} className="gx-3 gy-4">
                     {
-                        cards.map(card => {
-                            return card
+                        recipes && recipes.map(recipe => {
+                            return (
+                                <RecipeCard recipe={recipe} />
+                            )
                         })
                     }
                 </Row>

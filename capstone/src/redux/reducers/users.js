@@ -1,6 +1,7 @@
-import { RETRIEVE_USER } from "../actions";
+import { RETRIEVE_USER, RETRIEVE_FAVOURITES } from "../actions";
 const initialState = {
-    logged: null
+    logged: null,
+    favourites: []
 }
 
 const userReducer = (state = initialState, action) => {
@@ -9,6 +10,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 logged: action.payload
+            }
+        case RETRIEVE_FAVOURITES:
+            return {
+                ...state,
+                favourites: action.payload
             }
         default:
             return state
