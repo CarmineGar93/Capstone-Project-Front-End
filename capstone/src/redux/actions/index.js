@@ -3,12 +3,12 @@ export const RETRIEVE_PLANS = 'RETRIEVE_PLANS'
 export const SET_SELECTED = 'SET_SELECTED'
 export const RETRIEVE_ACTIVE_PLAN = 'RETRIEVE_ACTIVE_PLAN'
 export const RETRIEVE_FAVOURITES = 'RETRIEVE_FAVOURITES'
-export const REMOVE_ACTIVE_PLAN = 'REMOVE_ACTIVE_PLAN'
+export const REMOVE_PLANS = 'REMOVE_PLANS'
 export const REMOVE_USER = 'REMOVE_USER'
 
-export const RemoveActivePlanAction = () => {
+export const RemovePlansAction = () => {
     return {
-        type: REMOVE_ACTIVE_PLAN
+        type: REMOVE_PLANS
     }
 }
 
@@ -69,7 +69,7 @@ export const RetrieveActivePlan = (token) => {
                     payload: data
                 })
             } else if (response.status === 404) {
-                dispatch(RemoveActivePlanAction())
+                alert("No active plan")
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
@@ -123,6 +123,7 @@ export const RetrieveUserAction = (token, navigate) => {
             } else if (response.status === 401) {
                 localStorage.removeItem("token")
                 dispatch(RemoveUserAction())
+                dispatch(RemovePlansAction())
                 navigate("/explore")
             } else {
                 const error = await response.json()

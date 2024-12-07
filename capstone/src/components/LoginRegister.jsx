@@ -1,10 +1,7 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useState } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { RemoveActivePlanAction, RemoveUserAction } from "../redux/actions";
 const LoginRegister = () => {
-    const dispatch = useDispatch()
     const location = useLocation()
     const [formData, setFormData] = useState({
         email: "",
@@ -46,8 +43,6 @@ const LoginRegister = () => {
                     const data = await response.json()
                     console.log(data)
                     localStorage.setItem("token", data.token)
-                    dispatch(RemoveUserAction())
-                    dispatch(RemoveActivePlanAction())
                     alert("Login successful")
                     navigate("/home")
 

@@ -1,8 +1,20 @@
 
-import { Navbar, Container, Offcanvas, Nav, Button } from 'react-bootstrap'
+import { Navbar, Container, Offcanvas, Nav, Button, Dropdown } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { BoxArrowInLeft, Person } from 'react-bootstrap-icons'
+import { RemovePlansAction, RemoveUserAction } from '../redux/actions'
 function MyNavbar() {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const user = useSelector(state => state.user.logged)
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        dispatch(RemoveUserAction())
+        dispatch(RemovePlansAction())
+        alert("Logout successfull")
+        navigate("/explore")
+    }
     return (
         <>
             <Navbar key='lg' expand='lg' className="bg-white py-2">
@@ -36,7 +48,43 @@ function MyNavbar() {
                                 <Link to={"/plans"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Weekly Plans</Link>
                                 <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
                             </Nav>
-                            <Button variant='danger' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth/login')}>Login</Button>
+                            {
+                                user ? (
+                                    <div className='d-flex align-items-center'>
+                                        <img
+                                            alt=""
+                                            src={user.avatarUrl}
+                                            width="40"
+                                            height="40"
+                                            className="rounded-circle"
+                                        />
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="outline-light" id="dropdown-basic" className='border-0 text-black rounded-3'>
+                                                {user.name}
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item>
+                                                    <div className='d-flex align-items-center'>
+                                                        <Person size={20} className='me-2' />
+                                                        <span>Profile</span>
+                                                    </div>
+
+                                                </Dropdown.Item>
+                                                <Dropdown.Item onClick={() => handleLogout()}>
+                                                    <div className='d-flex align-items-center'>
+                                                        <BoxArrowInLeft size={20} className='me-2' />
+                                                        <span>Logout</span>
+                                                    </div>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </div>
+                                ) : (
+                                    <Button variant='danger' className='mt-3 mt-lg-0 align-self-center py-2' onClick={() => navigate('/auth/login')}>Login</Button>
+                                )
+                            }
+
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container >
