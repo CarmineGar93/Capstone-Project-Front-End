@@ -18,12 +18,15 @@ function Home() {
         if (!token) {
             navigate("/auth/login")
         } else {
-            dispatch(RetrieveUserAction(token, navigate))
-            dispatch(RetrieveActivePlan(token))
-            dispatch(RetrieveFavouritesAction(token))
+            if (!user) {
+                dispatch(RetrieveUserAction(token, navigate))
+            } else {
+                dispatch(RetrieveActivePlan(token))
+                dispatch(RetrieveFavouritesAction(token))
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token])
+    }, [token, user])
     return (
         <Container className="my-5">
             {

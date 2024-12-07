@@ -1,4 +1,4 @@
-import { Card, Container, Form, Row } from "react-bootstrap";
+import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
 function RecipesMain({ recipes }) {
@@ -19,7 +19,10 @@ function RecipesMain({ recipes }) {
                     {
                         recipes && recipes.map(recipe => {
                             return (
-                                <RecipeCard recipe={recipe} />
+                                <Col key={recipe.id}>
+                                    <RecipeCard recipe={recipe} />
+                                </Col>
+
                             )
                         })
                     }

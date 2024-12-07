@@ -1,4 +1,4 @@
-import { RETRIEVE_PLANS, SET_SELECTED, RETRIEVE_ACTIVE_PLAN } from "../actions";
+import { RETRIEVE_PLANS, SET_SELECTED, RETRIEVE_ACTIVE_PLAN, REMOVE_ACTIVE_PLAN } from "../actions";
 const initialState = {
     myplans: null,
     selected: null,
@@ -21,6 +21,11 @@ const plansReducer = (state = initialState, action) => {
             return {
                 ...state,
                 active: action.payload
+            }
+        case REMOVE_ACTIVE_PLAN:
+            return {
+                ...state,
+                active: null
             }
         default:
             return state

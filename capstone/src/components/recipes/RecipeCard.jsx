@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Col } from "react-bootstrap";
 import { HeartFill } from 'react-bootstrap-icons'
 import { useDispatch, useSelector } from "react-redux";
 import { RetrieveFavouritesAction } from "../../redux/actions";
@@ -7,6 +6,7 @@ import { RetrieveFavouritesAction } from "../../redux/actions";
 function RecipeCard({ recipe }) {
     const favourites = useSelector(state => state.user.favourites)
     const dispatch = useDispatch()
+    const id = recipe.id ? recipe.id : recipe.reference
     const token = localStorage.getItem("token")
     const [isFavourite, setIsFavourite] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
@@ -15,7 +15,7 @@ function RecipeCard({ recipe }) {
             const response = await fetch("http://localhost:3001/users/me/favourites", {
                 method: "PATCH",
                 body: JSON.stringify({
-                    reference: recipe.id
+                    reference: id
                 }),
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ function RecipeCard({ recipe }) {
         }
     }
     useEffect(() => {
-        if (favourites.some(fav => fav.reference === recipe.id)) {
+        if (favourites.some(fav => fav.reference === id)) {
             setIsFavourite(true)
         } else {
             setIsFavourite(false)
@@ -47,14 +47,16 @@ function RecipeCard({ recipe }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [favourites])
     return (
-        <Col key={recipe.id}>
-            <div className="mb-2 recipe-background position-relative rounded-4" style={{ "--url": `url(${recipe.image})` }}>
-                <HeartFill onClick={() => handleFavourite()} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className=" position-absolute bottom-0 end-0 m-2" size={30} color={isHovered ? (isFavourite ? "white" : "red") : (isFavourite ? "red" : "white")} />
+        <>
+            <div className="mb-2 recipe-background position-relative rounded-4" style={{ "--url": `url(${recipe.image ? recipe.image : recipe.imageUrl})` }}>
+                <HeartFill onClick={() => handleFavourite()} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className=" position-absolute bottom-0 end-0 m-2" size={30} color={(isFavourite && isHovered) || (!isFavourite && !isHovered) ? "white" : "red"} />
             </div>
-            <h5>{recipe.title}</h5>
-            <p className="mb-0 text-body-tertiary">{`Ingredients: ${recipe.extendedIngredients.length}`}</p>
-            <p className="mb-0 text-body-tertiary">{`Ready in : ${recipe.readyInMinutes} minutes`}</p>
-        </Col>
+            <h5>{recipe.title ? recipe.title : recipe.name}</h5>
+            {
+                recipe.extendedIngredients && <p className="mb-0 text-body-tertiary">{`Ingredients: ${recipe.extendedIngredients.length}`}</p>
+            }
+
+        </>
     )
 }
 

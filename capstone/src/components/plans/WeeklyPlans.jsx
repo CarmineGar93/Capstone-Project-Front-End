@@ -30,7 +30,6 @@ function WeeklyPlans() {
             dispatch(RetrievePlansAction(token, 0))
         }
         return () => {
-            console.log("Sono stato disattivato")
             dispatch(SetSelectedPlanAction(null))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,6 +40,8 @@ function WeeklyPlans() {
             if (selectedPlan) {
                 dispatch(SetSelectedPlanAction(selectedPlan))
             }
+        } else {
+            dispatch(SetSelectedPlanAction(null))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [plans])

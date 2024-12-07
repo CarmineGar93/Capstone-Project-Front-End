@@ -1,4 +1,4 @@
-import { RETRIEVE_USER, RETRIEVE_FAVOURITES } from "../actions";
+import { RETRIEVE_USER, RETRIEVE_FAVOURITES, REMOVE_USER } from "../actions";
 const initialState = {
     logged: null,
     favourites: []
@@ -10,6 +10,10 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 logged: action.payload
+            }
+        case REMOVE_USER:
+            return {
+                ...initialState
             }
         case RETRIEVE_FAVOURITES:
             return {

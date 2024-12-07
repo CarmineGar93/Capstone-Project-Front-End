@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react'
-import { Modal, Button, Form, Container, Row, Col, Card } from 'react-bootstrap'
+import { Modal, Button, Form, Container, Row, Col } from 'react-bootstrap'
 import RecipesPagination from './RecipesPagination'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RetrievePlansAction } from '../../redux/actions'
+import RecipeCard from '../recipes/RecipeCard'
 
 
 function SearchRecipeModal({ onHide, show, meal }) {
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
-    const [recipes, setRecipes] = useState([])
+    const favourites = useSelector(state => state.user.favourites)
+    const [recipes, setRecipes] = useState(favourites)
     const [value, setValue] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-    const [recipePerPage] = useState(6)
+    const [recipePerPage] = useState(8)
     const indexLast = currentPage * recipePerPage
     const indexFirst = indexLast - recipePerPage
     const currentRecipes = recipes.slice(indexFirst, indexLast);
     const [selectedRecipe, setSelectedRecipe] = useState(null)
     const resetStates = () => {
         setValue("")
-        setRecipes([])
+        setRecipes(favourites)
         setSelectedRecipe(null)
         setCurrentPage(1)
     }
@@ -70,6 +72,9 @@ function SearchRecipeModal({ onHide, show, meal }) {
         const getRecipes = setTimeout(() => {
             if (value) {
                 getData()
+            } else {
+                setCurrentPage(1)
+                setRecipes(favourites)
             }
         }, 2000)
         return () => clearTimeout(getRecipes)
@@ -85,11 +90,17 @@ function SearchRecipeModal({ onHide, show, meal }) {
             <Modal.Body>
                 <Form.Control type='text' placeholder='Search a recipe' className=' rounded-4 mb-2' value={value} onChange={(e) => setValue(e.target.value)} />
                 <Container>
-                    <Row xs={3} className='gy-3 mb-3'>
+                    <Row xs={4} className='gy-3 mb-3'>
                         {
                             currentRecipes.map(recipe => {
                                 return (
-                                    <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""} rounded-5 py-3`}>
+                                    <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""} rounded-5 py-3`} onClick={() => setSelectedRecipe(recipe.reference)}>
+                                        <RecipeCard recipe={recipe} />
+                                    </Col>
+                                )
+                            })
+                        }
+                        {/* <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""} rounded-5 py-3`}>
                                         <Card className={`p-0 border-0`} onClick={() => setSelectedRecipe(recipe.reference)}>
                                             <Card.Img src={recipe.image} height={200} className="w-100" onError={function (e) {
                                                 e.currentTarget.src = "http://placedog.net/100/100"
@@ -99,10 +110,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
                                             </Card.Body>
 
                                         </Card>
-                                    </Col>
-                                )
-                            })
-                        }
+                                    </Col> */}
                     </Row>
                     <RecipesPagination currentPage={currentPage} setCurrentPage={setCurrentPage} recipePerPage={recipePerPage} totalRecipes={recipes.length} />
                 </Container>

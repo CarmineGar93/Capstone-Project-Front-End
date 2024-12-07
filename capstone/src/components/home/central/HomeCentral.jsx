@@ -11,7 +11,6 @@ function HomeCentral() {
     useEffect(() => {
         if (activePlan) {
             const today = new Date().getDay()
-            console.log(today)
             setActiveDay(activePlan.dailyPlans.filter(daily => daily.day === today - 1)[0])
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +28,7 @@ function HomeCentral() {
                             {
                                 activeDay && activeDay.meals.map(meal => {
                                     return (
-                                        <>
+                                        <div key={meal.mealId}>
                                             <h3>{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</h3>
                                             {
                                                 meal.recipe ? (
@@ -53,7 +52,7 @@ function HomeCentral() {
                                                 )
                                             }
 
-                                        </>
+                                        </div>
                                     )
                                 })
                             }
