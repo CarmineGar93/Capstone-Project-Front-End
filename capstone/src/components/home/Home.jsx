@@ -9,11 +9,37 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RetrieveActivePlan, RetrieveFavouritesAction, RetrieveUserAction } from "../../redux/actions";
+
+export const differenceBetweenDates = (date1, date2) => {
+    const tsDifference = date1.getTime() - date2.getTime();
+    return Math.floor(tsDifference / (1000 * 60 * 60 * 24));
+};
+
 function Home() {
     const token = localStorage.getItem("token")
+    const lastUpdatePlans = localStorage.getItem("updatedAt")
     const user = useSelector(state => state.user.logged)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const updatePlansStatus = async () => {
+        try {
+            const response = await fetch("http://localhost:3001/plans/myplans", {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.ok) {
+                alert("Plans updated")
+                localStorage.setItem("updatedAt", new Date())
+            } else {
+                const error = await response.json()
+                throw new Error(error.message)
+            }
+        } catch (err) {
+            alert(err)
+        }
+    }
     useEffect(() => {
         if (!token) {
             navigate("/auth/login")
@@ -27,6 +53,16 @@ function Home() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token, user])
+    useEffect(() => {
+        const lastUpdate = new Date(lastUpdatePlans)
+        const today = new Date()
+        const monday = new Date().setDate(today.getDate() - ((today.getDay() === 0 ? 7 : today.getDay()) - 1))
+        if (differenceBetweenDates(today, lastUpdate) > 6 || lastUpdate < monday) {
+            updatePlansStatus()
+            console.log("Up")
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lastUpdatePlans])
     return (
         <Container className="my-5">
             {

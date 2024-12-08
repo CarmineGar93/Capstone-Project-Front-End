@@ -10,8 +10,11 @@ function HomeCentral() {
     const today = new Date()
     useEffect(() => {
         if (activePlan) {
-            const today = new Date().getDay()
-            setActiveDay(activePlan.dailyPlans.filter(daily => daily.day === today - 1)[0])
+            let todayDay = new Date().getDay()
+            if (todayDay === 0) {
+                todayDay = 7
+            }
+            setActiveDay(activePlan.dailyPlans.filter(daily => daily.day === todayDay - 1)[0])
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activePlan])
