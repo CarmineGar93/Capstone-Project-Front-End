@@ -36,10 +36,15 @@ function WeeklyPlans() {
     }, [])
     useEffect(() => {
         if (plans) {
-            const selectedPlan = plans.content.filter(plan => plan.status === "ACTIVE")[0]
-            if (selectedPlan) {
-                dispatch(SetSelectedPlanAction(selectedPlan))
+            if (!selected) {
+                const selectedPlan = plans.content.filter(plan => plan.status === "ACTIVE")[0]
+                if (selectedPlan) {
+                    dispatch(SetSelectedPlanAction(selectedPlan))
+                } else {
+                    dispatch(SetSelectedPlanAction(plans.content[0]))
+                }
             }
+
         } else {
             dispatch(SetSelectedPlanAction(null))
         }

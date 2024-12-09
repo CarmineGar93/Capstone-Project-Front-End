@@ -10,6 +10,7 @@ function MyNavbar() {
     const user = useSelector(state => state.user.logged)
     const handleLogout = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("updatedAt")
         dispatch(RemoveUserAction())
         dispatch(RemovePlansAction())
         alert("Logout successfull")

@@ -32,6 +32,12 @@ function Home() {
             if (response.ok) {
                 alert("Plans updated")
                 localStorage.setItem("updatedAt", new Date())
+                if (!user) {
+                    dispatch(RetrieveUserAction(token, navigate))
+                } else {
+                    dispatch(RetrieveActivePlan(token))
+                    dispatch(RetrieveFavouritesAction(token))
+                }
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
@@ -44,7 +50,14 @@ function Home() {
         if (!token) {
             navigate("/auth/login")
         } else {
-            if (!user) {
+            const lastUpdate = new Date(lastUpdatePlans)
+            const today = new Date()
+            const monday = new Date()
+            monday.setDate(today.getDate() - ((today.getDay() === 0 ? 7 : today.getDay()) - 1))
+            if (differenceBetweenDates(today, lastUpdate) > 6 || ((lastUpdate < monday) && (lastUpdate.getDate() !== monday.getDate()))) {
+                updatePlansStatus()
+                console.log("Up")
+            } else if (!user) {
                 dispatch(RetrieveUserAction(token, navigate))
             } else {
                 dispatch(RetrieveActivePlan(token))
@@ -53,16 +66,6 @@ function Home() {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token, user])
-    useEffect(() => {
-        const lastUpdate = new Date(lastUpdatePlans)
-        const today = new Date()
-        const monday = new Date().setDate(today.getDate() - ((today.getDay() === 0 ? 7 : today.getDay()) - 1))
-        if (differenceBetweenDates(today, lastUpdate) > 6 || lastUpdate < monday) {
-            updatePlansStatus()
-            console.log("Up")
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lastUpdatePlans])
     return (
         <Container className="my-5">
             {
