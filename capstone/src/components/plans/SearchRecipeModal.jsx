@@ -26,7 +26,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
     }
     const addReceipt = async () => {
         try {
-            const response = await fetch("http://localhost:3001/meals/" + meal, {
+            const response = await fetch("http://localhost:3001/meals/" + meal + "/add", {
                 method: "PATCH",
                 body: JSON.stringify({
                     reference: selectedRecipe
@@ -100,17 +100,6 @@ function SearchRecipeModal({ onHide, show, meal }) {
                                 )
                             })
                         }
-                        {/* <Col key={recipe.reference} className={`${selectedRecipe === recipe.reference ? "shadow-lg" : ""} rounded-5 py-3`}>
-                                        <Card className={`p-0 border-0`} onClick={() => setSelectedRecipe(recipe.reference)}>
-                                            <Card.Img src={recipe.image} height={200} className="w-100" onError={function (e) {
-                                                e.currentTarget.src = "http://placedog.net/100/100"
-                                            }} />
-                                            <Card.Body className="px-0 py-1">
-                                                <Card.Title>{recipe.title}</Card.Title>
-                                            </Card.Body>
-
-                                        </Card>
-                                    </Col> */}
                     </Row>
                     <RecipesPagination currentPage={currentPage} setCurrentPage={setCurrentPage} recipePerPage={recipePerPage} totalRecipes={recipes.length} />
                 </Container>
@@ -120,7 +109,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
                     resetStates()
                     onHide()
                 }}>Close</Button>
-                <Button variant='danger' onClick={() => addReceipt()}>Add receipt</Button>
+                <Button variant='danger' onClick={() => addReceipt()} disabled={selectedRecipe ? false : true}>Add receipt</Button>
             </Modal.Footer>
         </Modal>
     )

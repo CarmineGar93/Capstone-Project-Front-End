@@ -43,6 +43,8 @@ function WeeklyPlans() {
                 } else {
                     dispatch(SetSelectedPlanAction(plans.content[0]))
                 }
+            } else {
+                dispatch(SetSelectedPlanAction(plans.content.filter(plan => plan.status === selected.status)[0]))
             }
 
         } else {

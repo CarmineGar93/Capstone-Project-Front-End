@@ -1,10 +1,14 @@
-import { Badge, Card, Accordion } from "react-bootstrap"
-import { Plus } from "react-bootstrap-icons"
+import { Badge, Card, Accordion, Button } from "react-bootstrap"
+import { Plus, Trash } from "react-bootstrap-icons"
 import { transformDate } from "./WeeklyPlans"
 import { useState } from "react"
 import SearchRecipeModal from "./SearchRecipeModal"
+import { useDispatch } from "react-redux"
+import { RetrievePlansAction } from "../../redux/actions"
 
 function WeeklyPlanChoosen({ selected, badgeColors }) {
+    const dispatch = useDispatch()
+    const token = localStorage.getItem("token")
     const [show, setShow] = useState(false)
     const [mealSelected, setMealSelected] = useState(null)
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -19,6 +23,25 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
         const secondMonth = today.getMonth();
         const secondDay = today.getDate();
         return firstYear === secondYear && firstMonth === secondMonth && firstDay === secondDay ? false : today > dailyPlanDate
+    }
+    const removeReceipt = async (mealId) => {
+        try {
+            const response = await fetch("http://localhost:3001/meals/" + mealId + "/remove", {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            if (response.ok) {
+                alert("Recipe removed successfully")
+                dispatch(RetrievePlansAction(token, 0))
+            } else {
+                const error = await response.json()
+                throw new Error(error.message)
+            }
+        } catch (err) {
+            alert(err)
+        }
     }
 
     return (
@@ -48,12 +71,20 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                             <Accordion.Item className="border-0 border-bottom mb-2" key={meal.mealId} eventKey={meal.mealId}>
                                                                                 <Accordion.Header><p className="mb-0 fs-5 px-0">{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</p></Accordion.Header>
                                                                                 <Accordion.Body>
-                                                                                    <div className="d-flex align-items-center">
-                                                                                        <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
-                                                                                        <p className="mb-0">{meal.recipe.name}</p>
+                                                                                    <div className="d-flex justify-content-between align-items-center">
+                                                                                        <div className="d-flex align-items-center">
+                                                                                            <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
+                                                                                            <p className="mb-0">{meal.recipe.name}</p>
+                                                                                        </div>
+                                                                                        {
+                                                                                            !valuateDate(daily.day) && <Button variant="danger" onClick={() => removeReceipt(meal.mealId)}><Trash className="py-0"></Trash></Button>
+                                                                                        }
+
+
                                                                                     </div>
+
                                                                                 </Accordion.Body>
-                                                                            </Accordion.Item>
+                                                                            </Accordion.Item >
                                                                         ) : (
                                                                             <div className="border-bottom border-1 d-flex justify-content-between align-items-center mb-2 px-3" key={meal.mealId}>
                                                                                 <p className="mb-0 fs-5">{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</p>
@@ -76,7 +107,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                 })
                             }
                         </Accordion>
-                    </Card>
+                    </Card >
                 )
             }
         </>
