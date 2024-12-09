@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HeartFill } from 'react-bootstrap-icons'
 import { useDispatch, useSelector } from "react-redux";
 import { RetrieveFavouritesAction } from "../../redux/actions";
+import { toast } from "react-toastify";
 
 function RecipeCard({ recipe }) {
     const favourites = useSelector(state => state.user.favourites)
@@ -25,9 +26,9 @@ function RecipeCard({ recipe }) {
             if (response.ok) {
                 const data = await response.json()
                 if (data.message === "Added") {
-                    alert("Recipe added to favourites")
+                    toast.success("Recipe added to favourites")
                 } else {
-                    alert("Recipe removed from favourites")
+                    toast.success("Recipe removed from favourites")
                 }
                 dispatch(RetrieveFavouritesAction(token))
             } else {
@@ -35,7 +36,7 @@ function RecipeCard({ recipe }) {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     useEffect(() => {

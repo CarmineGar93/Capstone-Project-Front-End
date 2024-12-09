@@ -1,6 +1,7 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useState } from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
 const LoginRegister = () => {
     const location = useLocation()
     const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const LoginRegister = () => {
                     const data = await response.json()
                     console.log(data)
                     localStorage.setItem("token", data.token)
-                    alert("Login successful")
+                    toast.success("Login successful")
                     navigate("/home")
 
                 } else {
@@ -67,8 +68,7 @@ const LoginRegister = () => {
                     const data = await response.json()
                     console.log(data)
                     localStorage.setItem("token", data.token)
-
-                    alert("Login successful")
+                    toast.success("Registration successful")
                     navigate("/home")
 
                 } else {
@@ -76,7 +76,7 @@ const LoginRegister = () => {
                     throw new Error(error.message)
                 }
             } catch (err) {
-                alert(err)
+                toast.error(err)
             }
         }
     }

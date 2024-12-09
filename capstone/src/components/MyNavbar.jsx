@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { BoxArrowInLeft, Person } from 'react-bootstrap-icons'
 import { RemovePlansAction, RemoveUserAction } from '../redux/actions'
+import { toast } from 'react-toastify'
 function MyNavbar() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -13,7 +14,7 @@ function MyNavbar() {
         localStorage.removeItem("updatedAt")
         dispatch(RemoveUserAction())
         dispatch(RemovePlansAction())
-        alert("Logout successfull")
+        toast.success("Logout successful")
         navigate("/explore")
     }
     return (

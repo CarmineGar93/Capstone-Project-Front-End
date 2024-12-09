@@ -5,6 +5,7 @@ import { useState } from "react"
 import SearchRecipeModal from "./SearchRecipeModal"
 import { useDispatch } from "react-redux"
 import { RetrievePlansAction } from "../../redux/actions"
+import { toast } from "react-toastify"
 
 export const valuateToday = (startDate, day) => {
     const dailyPlanDate = new Date(startDate)
@@ -41,14 +42,14 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                 }
             })
             if (response.ok) {
-                alert("Recipe removed successfully")
+                toast.success("Recipe removed successfully")
                 dispatch(RetrievePlansAction(token, 0))
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
 

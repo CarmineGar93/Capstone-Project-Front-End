@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RetrieveActivePlan, RetrieveFavouritesAction, RetrieveUserAction } from "../../redux/actions";
+import { toast } from "react-toastify";
 
 export const differenceBetweenDates = (date1, date2) => {
     const tsDifference = date1.getTime() - date2.getTime();
@@ -30,7 +31,7 @@ function Home() {
                 }
             })
             if (response.ok) {
-                alert("Plans updated")
+                toast.success("Plans updated")
                 localStorage.setItem("updatedAt", new Date())
                 if (!user) {
                     dispatch(RetrieveUserAction(token, navigate))
@@ -43,7 +44,7 @@ function Home() {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     useEffect(() => {

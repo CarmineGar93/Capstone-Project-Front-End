@@ -3,6 +3,7 @@ import RecipesMain from "./RecipesMain"
 import RecipesFilterSection from "./RecipesFilterSection"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Recipes() {
     const [recipes, setRecipes] = useState([])
@@ -24,7 +25,7 @@ function Recipes() {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     useEffect(() => {

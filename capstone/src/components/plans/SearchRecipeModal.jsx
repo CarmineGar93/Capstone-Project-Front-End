@@ -4,6 +4,7 @@ import RecipesPagination from './RecipesPagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { RetrievePlansAction } from '../../redux/actions'
 import RecipeCard from '../recipes/RecipeCard'
+import { toast } from 'react-toastify'
 
 
 function SearchRecipeModal({ onHide, show, meal }) {
@@ -37,7 +38,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
                 }
             })
             if (response.ok) {
-                alert("Recipe added successfully")
+                toast.success("Recipe added successfully")
                 resetStates()
                 dispatch(RetrievePlansAction(token, 0))
                 onHide()
@@ -46,7 +47,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     const getData = async () => {
@@ -65,7 +66,7 @@ function SearchRecipeModal({ onHide, show, meal }) {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     useEffect(() => {

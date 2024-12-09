@@ -3,6 +3,7 @@ import { Calendar } from "react-bootstrap-icons"
 import { useDispatch } from "react-redux"
 import { RetrievePlansAction, SetSelectedPlanAction } from "../../redux/actions"
 import { transformDate } from "./WeeklyPlans"
+import { toast } from "react-toastify"
 
 function WeeklyPlansLeft({ selected, plans, badgeColors }) {
     const token = localStorage.getItem("token")
@@ -20,14 +21,14 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                 }
             })
             if (response.ok) {
-                alert("New plan successfully created")
+                toast.success("New plan successfully created")
                 dispatch(RetrievePlansAction(token, 0))
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
     const dispatch = useDispatch()
