@@ -1,3 +1,5 @@
+import { toast } from "react-toastify"
+
 export const RETRIEVE_USER = 'RETRIEVE_USER'
 export const RETRIEVE_PLANS = 'RETRIEVE_PLANS'
 export const SET_SELECTED = 'SET_SELECTED'
@@ -46,7 +48,7 @@ export const RetrieveFavouritesAction = (token) => {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
 }
@@ -69,13 +71,13 @@ export const RetrieveActivePlan = (token) => {
                     payload: data
                 })
             } else if (response.status === 404) {
-                alert("No active plan")
+                toast.warn("No active plan")
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
 }
@@ -100,7 +102,7 @@ export const RetrievePlansAction = (token, page) => {
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
 }
@@ -124,13 +126,14 @@ export const RetrieveUserAction = (token, navigate) => {
                 localStorage.removeItem("token")
                 dispatch(RemoveUserAction())
                 dispatch(RemovePlansAction())
+                toast.warn("You must re-do login")
                 navigate("/explore")
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
             }
         } catch (err) {
-            alert(err)
+            toast.error(err)
         }
     }
 }
