@@ -1,8 +1,8 @@
-import { Accordion, Card, Button } from "react-bootstrap"
+import { Accordion, Card, Button, Badge } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { transformDate } from "../../plans/WeeklyPlans"
-
+import { valuateToday } from "../../plans/WeeklyPlanChoosen"
 function CalendarPlan() {
     const activePlan = useSelector(state => state.plans.active)
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -19,7 +19,7 @@ function CalendarPlan() {
                                 activePlan.dailyPlans.map(day => {
                                     return (
                                         <Accordion.Item eventKey={day.dailyPlanId} className="border-0 border-bottom" key={day.dailyPlanId}>
-                                            <Accordion.Header>{days[day.day]}</Accordion.Header>
+                                            <Accordion.Header>{days[day.day]} {valuateToday(activePlan.startDate, day.day) && <Badge bg="danger" pill className="px-2 py-0 rounded-circle ms-2">Today</Badge>}</Accordion.Header>
                                             <Accordion.Body className="px-0">
                                                 <Accordion flush>
                                                     {

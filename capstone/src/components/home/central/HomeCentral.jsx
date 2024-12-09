@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Card, Button } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { useSelector } from "react-redux"
 
 function HomeCentral() {

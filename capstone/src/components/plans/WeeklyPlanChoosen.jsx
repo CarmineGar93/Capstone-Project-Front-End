@@ -6,6 +6,14 @@ import SearchRecipeModal from "./SearchRecipeModal"
 import { useDispatch } from "react-redux"
 import { RetrievePlansAction } from "../../redux/actions"
 
+export const valuateToday = (startDate, day) => {
+    const dailyPlanDate = new Date(startDate)
+    dailyPlanDate.setDate(dailyPlanDate.getDate() + day)
+    const today = new Date()
+    return today.getDate() === dailyPlanDate.getDate() && today.getMonth() === dailyPlanDate.getMonth() && today.getFullYear() === dailyPlanDate.getFullYear()
+
+}
+
 function WeeklyPlanChoosen({ selected, badgeColors }) {
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
@@ -60,7 +68,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                     return (
                                         <OverlayTrigger placement="right" delay={{ show: 200 }} overlay={<Tooltip >Tot calories: {daily.totCalories.toFixed(2)} kcal</Tooltip>}>
                                             <Accordion.Item eventKey={daily.dailyPlanId} className="border-0 border-bottom" key={daily.dailyPlanId}>
-                                                <Accordion.Header><h5 className="mb-0">{days[daily.day]}</h5></Accordion.Header>
+                                                <Accordion.Header><h5 className="mb-0">{days[daily.day]} {valuateToday(selected.startDate, daily.day) && <Badge bg="danger" pill className="px-2 py-0 rounded-circle ms-1">Today</Badge>}</h5></Accordion.Header>
                                                 <Accordion.Body className="px-2 py-4">
                                                     <Accordion>
                                                         {
