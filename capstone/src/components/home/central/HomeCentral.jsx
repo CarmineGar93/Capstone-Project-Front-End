@@ -22,7 +22,7 @@ function HomeCentral() {
         <Card className="border-0 px-3 px-xl-4 px-xxl-5 py-4">
             <h2>Today</h2>
             <h2>{`${days[today.getDay()]} ${today.getDate()} ${months[today.getMonth()]}`}</h2>
-            <div className="my-4">
+            <div className="mt-4">
                 {
                     !activePlan ? (
                         <h4>There is no active plan for this week</h4>
@@ -32,23 +32,21 @@ function HomeCentral() {
                                 activeDay && activeDay.meals.map(meal => {
                                     return (
                                         <div key={meal.mealId}>
-                                            <h3>{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</h3>
+                                            <h2>{meal.type.toLowerCase().replace(/^./, char => char.toUpperCase())}</h2>
                                             {
                                                 meal.recipe ? (
-                                                    <Card className="mb-4">
+                                                    <Card className="mb-4 border-0">
                                                         <Card.Img variant="top" src={meal.recipe.imageUrl} />
-                                                        <Card.Body>
-                                                            <Card.Title className="fs-3 px-3 py-1">{meal.recipe.name}</Card.Title>
-                                                            <Card.Body>
-                                                                <p className="fs-5 text-secondary">Tot calories: {meal.recipe.calories} kcal</p>
-                                                                <p className="fs-5 text-secondary">Ready in: {meal.recipe.readyIn === 0 ? "N/A" : `${meal.recipe.readyIn} minutes`}</p>
-                                                                <p className="fs-5 text-secondary">Ingredients: {meal.recipe.ingredientList.length}</p>
-                                                            </Card.Body>
-                                                            <div className="text-end mt-3">
-                                                                <Button variant="danger">Recipe information</Button>
-                                                            </div>
 
+                                                        <Card.Title className="fs-4 mt-3 ">{meal.recipe.name}</Card.Title>
+                                                        <Card.Body className="px-0">
+                                                            <p className="fs-5 text-secondary">Tot calories: {meal.recipe.calories} kcal</p>
+                                                            <p className="fs-5 text-secondary">Ready in: {meal.recipe.readyIn === 0 ? "N/A" : `${meal.recipe.readyIn} minutes`}</p>
+                                                            <p className="fs-5 text-secondary">Ingredients: {meal.recipe.ingredientList.length}</p>
                                                         </Card.Body>
+
+
+
                                                     </Card>
                                                 ) : (
                                                     <h3 className="my-10">No recipe selected</h3>
