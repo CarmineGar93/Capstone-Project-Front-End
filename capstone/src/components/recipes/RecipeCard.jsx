@@ -9,6 +9,7 @@ function RecipeCard({ recipe }) {
     const dispatch = useDispatch()
     const id = recipe.id ? recipe.id : recipe.reference
     const token = localStorage.getItem("token")
+    const [imageUrl, setImageUrl] = useState(recipe.image ? recipe.image : recipe.imageUrl)
     const [isFavourite, setIsFavourite] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const handleFavourite = async () => {
@@ -52,7 +53,7 @@ function RecipeCard({ recipe }) {
     }, [favourites])
     return (
         <>
-            <div className="mb-2 recipe-background position-relative rounded-4" style={{ "--url": `url(${recipe.image ? recipe.image : recipe.imageUrl})` }}>
+            <div className="mb-2 recipe-background position-relative rounded-4" style={{ "--url": `url(${imageUrl})` }}>
                 <HeartFill onClick={() => {
                     dispatch(ChangeLoadingAction(true))
                     setTimeout(() => {
@@ -61,6 +62,7 @@ function RecipeCard({ recipe }) {
                 }
                 } onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className=" position-absolute bottom-0 end-0 m-2" size={30} color={(isFavourite || isHovered) ? "red" : "white"} />
             </div>
+            <img src={imageUrl} alt={recipe.title ? recipe.title : recipe.name} className="d-none" onError={() => setImageUrl("http://placedog.net/200/200")}></img>
             <h5>{recipe.title ? recipe.title : recipe.name}</h5>
         </>
     )
