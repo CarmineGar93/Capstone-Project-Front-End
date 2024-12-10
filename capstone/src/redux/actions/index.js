@@ -7,6 +7,14 @@ export const RETRIEVE_ACTIVE_PLAN = 'RETRIEVE_ACTIVE_PLAN'
 export const RETRIEVE_FAVOURITES = 'RETRIEVE_FAVOURITES'
 export const REMOVE_PLANS = 'REMOVE_PLANS'
 export const REMOVE_USER = 'REMOVE_USER'
+export const CHANGE_LOADING = 'CHANGE_LOADING'
+
+export const ChangeLoadingAction = (bool) => {
+    return {
+        type: CHANGE_LOADING,
+        payload: bool
+    }
+}
 
 export const RemovePlansAction = () => {
     return {

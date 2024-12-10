@@ -52,7 +52,7 @@ const LoginRegister = () => {
                     throw new Error(error.message)
                 }
             } catch (err) {
-                alert(err)
+                toast.error(err.message)
             }
         } else {
             try {
@@ -76,7 +76,7 @@ const LoginRegister = () => {
                     throw new Error(error.message)
                 }
             } catch (err) {
-                toast.error(err)
+                toast.error(err.message)
             }
         }
     }

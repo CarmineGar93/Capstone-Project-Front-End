@@ -44,3 +44,7 @@ body {
     transform: scale(1.2);
     cursor: pointer;
 }
+
+.custom-z {
+    z-index: 3000;
+}

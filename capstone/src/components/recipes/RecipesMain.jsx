@@ -1,7 +1,7 @@
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
-function RecipesMain({ recipes }) {
+function RecipesMain({ recipes, lastRecipeRef }) {
     return (
         <Card className="px-4 py-5 border-0">
             <h1 className="ps-2">Recipes</h1>
@@ -17,10 +17,13 @@ function RecipesMain({ recipes }) {
             <Container fluid className="my-3">
                 <Row xs={1} sm={2} lg={3} xl={4} className="gx-3 gy-4">
                     {
-                        recipes && recipes.map(recipe => {
+                        recipes && recipes.map((recipe, index) => {
                             return (
-                                <Col key={recipe.id}>
-                                    <RecipeCard recipe={recipe} />
+                                <Col key={recipe.recipeId}>
+                                    <div ref={recipes.length === index + 1 ? lastRecipeRef : null}>
+                                        <RecipeCard recipe={recipe} />
+                                    </div>
+
                                 </Col>
 
                             )

@@ -49,7 +49,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                 throw new Error(error.message)
             }
         } catch (err) {
-            toast.error(err)
+            toast.error(err.message)
         }
     }
 
