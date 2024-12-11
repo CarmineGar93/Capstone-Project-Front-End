@@ -48,3 +48,21 @@ body {
 .custom-z {
     z-index: 3000;
 }
+
+.ingredient-btn {
+    border-color: lightgray;
+    border-style: solid;
+}
+
+.ingredient-btn:hover {
+    border-color: gray;
+}
+
+.ingredient-btn-selected {
+    border-color: rgb(240, 84, 84);
+    border-style: solid;
+}
+
+.add-btn:hover {
+    color: #000 !important;
+}
