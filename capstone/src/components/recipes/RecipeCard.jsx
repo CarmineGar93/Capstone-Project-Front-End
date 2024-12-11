@@ -62,7 +62,7 @@ function RecipeCard({ recipe }) {
                 }
                 } onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className=" position-absolute bottom-0 end-0 m-2" size={30} color={(isFavourite || isHovered) ? "red" : "white"} />
             </div>
-            <img src={imageUrl} alt={recipe.title ? recipe.title : recipe.name} className="d-none" onError={() => setImageUrl("http://placedog.net/200/200")}></img>
+            <img src={imageUrl} alt={recipe.title ? recipe.title : recipe.name} className="d-none" onError={() => setImageUrl("../no-image.jpg")}></img>
             <h5>{recipe.title ? recipe.title : recipe.name}</h5>
         </>
     )
