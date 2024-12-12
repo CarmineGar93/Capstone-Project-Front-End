@@ -75,7 +75,6 @@ function SearchRecipeModal({ onHide, show, meal }) {
     }
     useEffect(() => {
         const getRecipes = setTimeout(() => {
-            console.log("Called")
             if (value) {
                 getData()
             } else {

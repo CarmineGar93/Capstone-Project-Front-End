@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import ProductsModal from './ProductsModal'
 
-function RecipesFilterSection({ prod, addIng, removeIng, ingSelected, addProd }) {
+function RecipesFilterSection({ prod, addIng, removeIng, filters, addProd, time, mealTypes, removeType, addType, removeTime, addTime }) {
     const [show, setShow] = useState(false)
     const [more, setMore] = useState(false)
     const products = more ? prod : prod.slice(0, 8)
-    const mealTypes = ["Main course", "Side dish", "Breakfast", "Dessert", "Salad"]
-    const time = ["Max 20 min", "Max 40 min", "Max 60 min"]
     return (
         <Card className="p-4 border-0">
             <h3>Filter</h3>
@@ -24,8 +22,8 @@ function RecipesFilterSection({ prod, addIng, removeIng, ingSelected, addProd })
                     {
                         products.map(p => {
                             return (
-                                <Col xs="auto">
-                                    <button className={`rounded-5 bg-white p-2 text-nowrap ${(ingSelected.some(i => i === p.name)) ? "ingredient-btn-selected border-2" : "ingredient-btn"} `} onClick={() => (ingSelected.some(i => i === p.name)) ? removeIng(p.name) : addIng(p.name)}><img alt="" src={p.imageUrl} height={25} className="me-2"></img>{p.name.toLowerCase().replace(/^./, char => char.toUpperCase())}</button>
+                                <Col xs="auto" key={p.reference}>
+                                    <button className={`rounded-5 bg-white p-2 text-nowrap ${(filters.ingredients.some(i => i === p.name)) ? "ingredient-btn-selected border-2" : "ingredient-btn"} `} onClick={() => (filters.ingredients.some(i => i === p.name)) ? removeIng(p.name) : addIng(p.name)}><img alt="" src={p.imageUrl} height={25} className="me-2"></img>{p.name.toLowerCase().replace(/^./, char => char.toUpperCase())}</button>
                                 </Col>
                             )
                         })
@@ -44,7 +42,7 @@ function RecipesFilterSection({ prod, addIng, removeIng, ingSelected, addProd })
                         mealTypes.map(type => {
                             return (
                                 <Col xs="auto">
-                                    <button className="rounded-5 bg-white py-2 px-3 text-nowrap ingredient-btn">{type}</button>
+                                    <button className={`rounded-5 bg-white py-2 px-3 text-nowrap ${(filters.recipeType.some(t => t === type)) ? "ingredient-btn-selected border-2" : "ingredient-btn"}`} onClick={() => (filters.recipeType.some(t => t === type)) ? removeType(type) : addType(type)}>{type}</button>
                                 </Col>
                             )
                         })
@@ -57,17 +55,17 @@ function RecipesFilterSection({ prod, addIng, removeIng, ingSelected, addProd })
                 </Row>
                 <Row className="gy-3 gx-1 mb-3">
                     {
-                        time.map(t => {
+                        time.map(time => {
                             return (
                                 <Col xs="auto">
-                                    <button className="rounded-5 bg-white py-2 px-3 text-nowrap ingredient-btn">{t}</button>
+                                    <button className={`rounded-5 bg-white py-2 px-3 text-nowrap ${(filters.preparationTime === time) ? "ingredient-btn-selected border-2" : "ingredient-btn"}`} onClick={() => (filters.preparationTime === time) ? removeTime(time) : addTime(time)}>{`Max ${time} min`}</button>
                                 </Col>
                             )
                         })
                     }
                 </Row>
             </Container>
-            <ProductsModal show={show} onHide={() => setShow(false)} />
+            <ProductsModal show={show} onHide={() => setShow(false)} addProd={addProd} addIng={addIng} />
         </Card>
     )
 }
