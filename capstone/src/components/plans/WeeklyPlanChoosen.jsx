@@ -1,11 +1,12 @@
 import { Badge, Card, Accordion, Button, OverlayTrigger, Tooltip } from "react-bootstrap"
-import { Plus, Trash } from "react-bootstrap-icons"
+import { Plus, Trash, BoxArrowInUpRight } from "react-bootstrap-icons"
 import { transformDate } from "./WeeklyPlans"
 import { useState } from "react"
 import SearchRecipeModal from "./SearchRecipeModal"
 import { useDispatch } from "react-redux"
 import { RetrievePlansAction } from "../../redux/actions"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export const valuateToday = (startDate, day) => {
     const dailyPlanDate = new Date(startDate)
@@ -16,6 +17,7 @@ export const valuateToday = (startDate, day) => {
 }
 
 function WeeklyPlanChoosen({ selected, badgeColors }) {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const token = localStorage.getItem("token")
     const [show, setShow] = useState(false)
@@ -85,7 +87,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
                                                                                     <div className="d-flex justify-content-between align-items-center">
                                                                                         <div className="d-flex align-items-center">
                                                                                             <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
-                                                                                            <p className="mb-0">{meal.recipe.name}</p>
+                                                                                            <p className="mb-0 recipe-link" onClick={() => navigate(`/recipe/${meal.recipe.reference}`)}>{meal.recipe.name} <BoxArrowInUpRight className="mb-1"></BoxArrowInUpRight></p>
                                                                                         </div>
                                                                                         {
                                                                                             !valuateDate(daily.day) && <Button variant="danger" onClick={() => removeReceipt(meal.mealId)}><Trash className="py-0"></Trash></Button>

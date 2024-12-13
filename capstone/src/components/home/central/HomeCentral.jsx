@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import { Card } from "react-bootstrap"
 import { useSelector } from "react-redux"
+import { BoxArrowInUpRight } from 'react-bootstrap-icons'
+import { useNavigate } from "react-router-dom"
 
 function HomeCentral() {
+    const navigate = useNavigate()
     const activePlan = useSelector(state => state.plans.active)
     const [activeDay, setActiveDay] = useState(null)
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -38,7 +41,7 @@ function HomeCentral() {
                                                     <Card className="mb-4 border-0">
                                                         <Card.Img variant="top" src={meal.recipe.imageUrl} />
 
-                                                        <Card.Title className="fs-4 mt-3 ">{meal.recipe.name}</Card.Title>
+                                                        <Card.Title className="fs-4 mt-3 recipe-link" onClick={() => navigate(`/recipe/${meal.recipe.reference}`)}>{meal.recipe.name} <BoxArrowInUpRight className="mb-1"></BoxArrowInUpRight></Card.Title>
                                                         <Card.Body className="px-0">
                                                             <p className="fs-5 text-secondary">Tot calories: {meal.recipe.calories} kcal</p>
                                                             <p className="fs-5 text-secondary">Ready in: {meal.recipe.readyIn === 0 ? "N/A" : `${meal.recipe.readyIn} minutes`}</p>

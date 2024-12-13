@@ -3,8 +3,11 @@ import { HeartFill } from 'react-bootstrap-icons'
 import { useDispatch, useSelector } from "react-redux";
 import { ChangeLoadingAction, RetrieveFavouritesAction } from "../../redux/actions";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { BoxArrowInUpRight } from 'react-bootstrap-icons'
 
 function RecipeCard({ recipe }) {
+    const navigate = useNavigate()
     const favourites = useSelector(state => state.user.favourites)
     const dispatch = useDispatch()
     const id = recipe.id ? recipe.id : recipe.reference
@@ -66,7 +69,7 @@ function RecipeCard({ recipe }) {
                 } onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className=" position-absolute bottom-0 end-0 m-2" size={30} color={(isFavourite || isHovered) ? "red" : "white"} />
             </div>
             <img src={imageUrl} alt={recipe.title ? recipe.title : recipe.name} className="d-none" onError={() => setImageUrl("../no-image.jpg")}></img>
-            <h5>{recipe.title ? recipe.title : recipe.name}</h5>
+            <h5 className="recipe-link" onClick={() => navigate(`/recipe/${recipe.reference ? recipe.reference : recipe.id}`)}>{recipe.title ? recipe.title : recipe.name} <BoxArrowInUpRight className="mb-1"></BoxArrowInUpRight></h5>
         </>
     )
 }

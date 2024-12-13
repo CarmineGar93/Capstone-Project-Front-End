@@ -1,9 +1,9 @@
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
-import { useNavigate } from "react-router-dom";
+
 
 function RecipesMain({ recipes, lastRecipeRef, addSort }) {
-    const navigate = useNavigate()
+
     return (
         <Card className="px-4 py-5 border-0">
             <h1 className="ps-2">Recipes</h1>
@@ -21,7 +21,7 @@ function RecipesMain({ recipes, lastRecipeRef, addSort }) {
                     {
                         recipes && recipes.map((recipe, index) => {
                             return (
-                                <Col key={recipe.reference ? recipe.reference : recipe.id} onClick={() => navigate(`/recipe/${recipe.reference ? recipe.reference : recipe.id}`)}>
+                                <Col key={recipe.reference ? recipe.reference : recipe.id} >
                                     <div ref={recipes.length === index + 1 ? lastRecipeRef : null}>
                                         <RecipeCard recipe={recipe} />
                                     </div>
