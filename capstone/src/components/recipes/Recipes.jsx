@@ -74,8 +74,12 @@ function Recipes() {
                     setHasMore(false)
                 }
                 dispatch(ChangeLoadingAction(false))
+            } else {
+                const error = await response.json()
+                throw new Error(error.message)
             }
         } catch (err) {
+            dispatch(ChangeLoadingAction(false))
             toast.error(err.message)
         }
     }
@@ -220,6 +224,7 @@ function Recipes() {
                 if (prevFilter.ingredients.length !== filter.ingredients.length || prevFilter.recipeType.length !== filter.recipeType.length || prevFilter.preparationTime !== filter.preparationTime || prevFilter.sortBy !== filter.sortBy) {
                     setHasMore(true)
                     if (offset === 0) {
+                        // eslint-disable-next-line no-unused-vars
                         const time = setTimeout(() => {
                             retrieveFilteredRecipes()
                         }, 2000)

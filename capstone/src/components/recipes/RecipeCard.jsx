@@ -12,6 +12,9 @@ function RecipeCard({ recipe }) {
     const [imageUrl, setImageUrl] = useState(recipe.image ? recipe.image : recipe.imageUrl)
     const [isFavourite, setIsFavourite] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
+    useEffect(() => {
+        setImageUrl(recipe.image ? recipe.image : recipe.imageUrl)
+    }, [recipe])
     const handleFavourite = async () => {
 
         try {
@@ -50,7 +53,7 @@ function RecipeCard({ recipe }) {
             setIsFavourite(false)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [favourites])
+    }, [favourites, recipe])
     return (
         <>
             <div className="mb-2 recipe-background position-relative rounded-4" style={{ "--url": `url(${imageUrl})` }}>
