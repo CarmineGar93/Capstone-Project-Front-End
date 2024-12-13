@@ -19,7 +19,7 @@ function Explore() {
             </Container>
 
             <Container className="bg-white py-5 my-5 rounded-5">
-                <h2 className="mb-5 text-center">What's offering (siteName)</h2>
+                <h2 className="mb-5 text-center">What's offering SmartMeals.com</h2>
                 <PlanInfo></PlanInfo>
             </Container>
         </>

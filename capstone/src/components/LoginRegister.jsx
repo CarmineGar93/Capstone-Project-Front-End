@@ -82,7 +82,9 @@ const LoginRegister = () => {
     }
     return (
         <>
-            <h1 className="text-center mt-8" onClick={() => navigate("/explore")}>Site Logo</h1>
+            <div className="text-center mt-5" role="button" onClick={() => navigate("/explore")}>
+                <img src="../../Logo.png" alt="" height={150} />
+            </div>
             <Row className="justify-content-center">
                 <Col xs={12} sm={10} md={8} lg={6} xl={4}>
                     <Card className="my-5 px-5 py-3 border-0">
