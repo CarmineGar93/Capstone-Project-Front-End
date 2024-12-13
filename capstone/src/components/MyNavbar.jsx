@@ -21,15 +21,12 @@ function MyNavbar() {
         <>
             <Navbar key='lg' expand='lg' className="bg-white py-2">
                 <Container fluid className='mx-lg-2 mx-xl-8 mx-xxl-9'>
-                    <Navbar.Brand href="#home" className='py-2 fs-4 me-0'>
+                    <Navbar.Brand href="#home" className='me-0'>
                         <img
                             alt=""
-                            src="http://placedog.net/50/50"
-                            width="40"
-                            height="40"
-                            className="d-inline-block align-top rounded-circle"
-                        />{' '}
-                        Webname
+                            src="./Logo-navbar.png"
+                            height={50}
+                        />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
                     <Navbar.Offcanvas
