@@ -66,3 +66,32 @@ body {
 .add-btn:hover {
     color: #000 !important;
 }
+
+.recipe-hero-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: var(--url);
+    height: 40vh;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .recipe-hero-background {
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 998px) {
+    .recipe-hero-background {
+        height: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1rem;
+    }
+}
+
+.recipe-link:hover {
+    color: rgb(240, 84, 84) !important;
+    cursor: pointer;
+}

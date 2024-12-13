@@ -258,18 +258,6 @@ function Recipes() {
         retrieveCommonProducts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    /*  useEffect(() => {
-         if (filter.ingredients.length !== 0 || filter.recipeType.length !== 0 || filter.preparationTime || filter.sortBy) {
-             setOffset(0)
-             dispatch(ChangeLoadingAction(true))
-             // eslint-disable-next-line no-unused-vars
-             const time = setTimeout(() => {
-                 retrieveFilteredRecipes()
-             }, 2000)
-         }
- 
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, [filter]) */
     return (
         <Container className="my-5">
             <Row className="g-3">
