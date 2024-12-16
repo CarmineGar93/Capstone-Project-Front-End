@@ -8,7 +8,7 @@ import HomeCentral from "./central/HomeCentral";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RetrieveActivePlan, RetrieveFavouritesAction, RetrieveUserAction } from "../../redux/actions";
+import { RemovePlansAction, RemoveUserAction, RetrieveActivePlan, RetrieveFavouritesAction, RetrieveUserAction } from "../../redux/actions";
 import { toast } from "react-toastify";
 
 export const differenceBetweenDates = (date1, date2) => {
@@ -31,7 +31,6 @@ function Home() {
                 }
             })
             if (response.ok) {
-                toast.success("Plans updated")
                 localStorage.setItem("updatedAt", new Date())
                 if (!user) {
                     dispatch(RetrieveUserAction(token, navigate))
@@ -39,6 +38,12 @@ function Home() {
                     dispatch(RetrieveActivePlan(token))
                     dispatch(RetrieveFavouritesAction(token))
                 }
+            } else if (response.status === 401) {
+                localStorage.removeItem("token")
+                dispatch(RemoveUserAction())
+                dispatch(RemovePlansAction())
+                toast.warn("You must re-do login")
+                navigate("/explore")
             } else {
                 const error = await response.json()
                 throw new Error(error.message)
