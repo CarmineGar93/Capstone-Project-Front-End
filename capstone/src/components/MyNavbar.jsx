@@ -63,7 +63,7 @@ function MyNavbar() {
                                             </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
-                                                <Dropdown.Item>
+                                                <Dropdown.Item onClick={() => navigate(`/profile/${user.userId}`)}>
                                                     <div className='d-flex align-items-center'>
                                                         <Person size={20} className='me-2' />
                                                         <span>Profile</span>

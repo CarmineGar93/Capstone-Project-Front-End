@@ -61,7 +61,7 @@ function WeeklyPlanChoosen({ selected, badgeColors }) {
             {
                 selected && (
                     <Card className="border-0 p-4">
-                        <div className="d-flex justify-content-between align-items-center mb-2">
+                        <div className="d-flex justify-content-between align-items-center mb-2 p-3">
                             <h2>Weekly Plan <Badge bg={badgeColors[selected.status]}>{selected.status}</Badge></h2>
                             <h4>{transformDate(selected.startDate)} - {transformDate(selected.endDate)}</h4>
                         </div>

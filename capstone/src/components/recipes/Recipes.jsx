@@ -114,10 +114,15 @@ function Recipes() {
         })
     }
     const addProduct = (prod) => {
-        const index = products.indexOf(p => p.reference === prod.reference)
+        const index = products.findIndex(p => p.reference === prod.reference)
         console.log(index)
         if (index === -1) {
             setProducts([prod, ...products])
+        } else {
+            const arr = [...products]
+            const founded = arr.splice(index, 1)
+            arr.unshift(founded[0])
+            setProducts(arr)
         }
         setFilter({
             ...filter,

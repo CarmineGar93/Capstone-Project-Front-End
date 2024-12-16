@@ -10,6 +10,7 @@ import WeeklyPlans from './components/plans/WeeklyPlans';
 import { Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import SingleRecipe from './components/recipe/SingleRecipe';
+import Profile from './components/profile/Profile';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/recipes' element={<Layout child={<Recipes />} />} />
         <Route path='/recipe/:recipeReference' element={<Layout child={<SingleRecipe />} />} />
         <Route path='/plans' element={<Layout child={<WeeklyPlans />} />} />
+        <Route path='/profile/:profileId' element={<Layout child={<Profile />} />} />
       </Routes>
       <ToastContainer position='bottom-right' autoClose={3000} theme='colored' draggable hideProgressBar={false} closeOnClick transition={Bounce}></ToastContainer>
     </BrowserRouter>

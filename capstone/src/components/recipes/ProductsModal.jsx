@@ -5,7 +5,7 @@ import { RotatingLines } from 'react-loader-spinner'
 import { Plus } from 'react-bootstrap-icons'
 
 
-function ProductsModal({ onHide, show, addProd, addIng }) {
+function ProductsModal({ onHide, show, addProd }) {
     const [isLoading, setIsLoading] = useState(false)
     const [value, setValue] = useState("")
     const [products, setProducts] = useState([])

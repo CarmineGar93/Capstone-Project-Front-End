@@ -95,3 +95,8 @@ body {
     color: rgb(240, 84, 84) !important;
     cursor: pointer;
 }
+
+.bg-modify:hover {
+    background-color: rgb(240, 84, 84) !important;
+    color: green !important;
+}

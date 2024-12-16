@@ -65,7 +65,7 @@ function RecipesFilterSection({ prod, addIng, removeIng, filters, addProd, time,
                     }
                 </Row>
             </Container>
-            <ProductsModal show={show} onHide={() => setShow(false)} addProd={addProd} addIng={addIng} />
+            <ProductsModal show={show} onHide={() => setShow(false)} addProd={addProd} />
         </Card>
     )
 }
