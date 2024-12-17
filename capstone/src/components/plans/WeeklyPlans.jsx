@@ -54,9 +54,9 @@ function WeeklyPlans() {
     }, [plans])
     return (
         <Container className="my-5">
-            <Row className="g-3">
-                <Col xs={3}><WeeklyPlansLeft selected={selected} plans={plans} badgeColors={stateColors} /></Col>
-                <Col xs={9}><WeeklyPlanChoosen selected={selected} badgeColors={stateColors} /></Col>
+            <Row className="g-3 justify-content-center">
+                <Col xs={12} sm={10} lg={4}><WeeklyPlansLeft selected={selected} plans={plans} badgeColors={stateColors} /></Col>
+                <Col xs={12} sm={10} lg={8}><WeeklyPlanChoosen selected={selected} badgeColors={stateColors} /></Col>
             </Row>
         </Container>
     )

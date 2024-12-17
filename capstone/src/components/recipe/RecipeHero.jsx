@@ -62,7 +62,7 @@ function RecipeHero({ recipe }) {
                     setRecipeInstructions(string)
                     console.log(string)
                 } else {
-                    setRecipeInstructions(recipe.instructions.slice(0, (recipe.instructions.indexOf(". ", 150) + 1)))
+                    setRecipeInstructions(recipe.instructions.slice(0, (recipe.instructions.indexOf(".", 150) + 1)))
                 }
             } else {
                 setRecipeInstructions(recipe.instructions)

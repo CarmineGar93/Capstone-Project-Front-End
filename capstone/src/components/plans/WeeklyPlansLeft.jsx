@@ -70,8 +70,13 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                             )
                         }
                         <div className="mt-auto">
-                            <Button variant="danger" className="mb-3" disabled={plans.content.some(plan => plan.status === "ACTIVE")} onClick={() => createPlan(true)}>New plan for this week</Button>
-                            <Button variant="danger" disabled={plans.content.some(plan => plan.status === "IN_PROGRAM")} onClick={() => createPlan(false)}>New plan for next week</Button>
+                            <div>
+                                <Button variant="danger" className="mb-3" disabled={plans.content.some(plan => plan.status === "ACTIVE")} onClick={() => createPlan(true)}>New plan for this week</Button>
+                            </div>
+                            <div>
+                                <Button variant="danger" disabled={plans.content.some(plan => plan.status === "IN_PROGRAM")} onClick={() => createPlan(false)}>New plan for next week</Button>
+                            </div>
+
                         </div>
                     </>
                 )

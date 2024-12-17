@@ -8,7 +8,7 @@ function CalendarPlan() {
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const navigate = useNavigate()
     return (
-        <Card className="border-0 d-none d-md-block">
+        <Card className="border-0">
             <h5 className="mb-3 bg-white shadow-sm p-3 text-center">Weekly active plan</h5>
             {
                 activePlan && (

@@ -19,7 +19,7 @@ function MyNavbar() {
     }
     return (
         <>
-            <Navbar key='lg' expand='lg' className="bg-white py-2">
+            <Navbar key='md' expand='md' className="bg-white py-2">
                 <Container fluid className='mx-lg-2 mx-xl-8 mx-xxl-9'>
                     <Navbar.Brand href="#home" className='me-0'>
                         <img
@@ -28,28 +28,26 @@ function MyNavbar() {
                             height={50}
                         />
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
                     <Navbar.Offcanvas
-                        id={`offcanvasNavbar-expand-lg`}
-                        aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+                        id={`offcanvasNavbar-expand-md`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-md`}
                         placement="start"
                     >
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
                                 Menu
                             </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-center flex-grow-1 pe-3">
-                                <Link to={"/home"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Home</Link>
-                                <Nav.Link href="#action2" className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your Products</Nav.Link>
-                                <Link to={"/recipes"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
-                                <Link to={"/plans"} className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Weekly Plans</Link>
-                                <Nav.Link href='#action5' className='pe-lg-3 pe-xl-4 pe-xxl-5 fs-5'>Your grocery lists</Nav.Link>
+                                <Link to={"/home"} className='pe-md-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Home</Link>
+                                <Link to={"/recipes"} className='pe-md-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Recepies</Link>
+                                <Link to={"/plans"} className='pe-md-3 pe-xl-4 pe-xxl-5 fs-5 nav-link'>Weekly Plans</Link>
                             </Nav>
                             {
                                 user ? (
-                                    <div className='d-flex align-items-center'>
+                                    <div className='d-flex align-items-center mt-3 mt-md-0'>
                                         <img
                                             alt=""
                                             src={user.avatarUrl}
