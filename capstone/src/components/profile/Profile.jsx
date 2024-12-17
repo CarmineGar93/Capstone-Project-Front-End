@@ -36,7 +36,7 @@ function Profile() {
                         <Col xs={12} lg={10} xl={8} className="bg-white rounded-4 p-5">
                             <Row className="align-items-center mb-8 gy-2">
                                 <Col xs={12} md="auto" className="order-md-1"><h1>{profile.name} {profile.surname}</h1></Col>
-                                <Col xs="auto" className="order-0"><img src={profile.avatarUrl} alt="" height={100} className="rounded-circle me-1" /></Col>
+                                <Col xs="auto" className="order-0"><img src={profile.avatarUrl} alt="" height={100} width={100} className="rounded-circle me-1" /></Col>
                                 <Col xs="auto" className="order-2 ms-md-auto"><button className="rounded-5 bg-white p-2 px-3 text-nowrap ingredient-btn" onClick={() => setShow(true)}>Modify profile</button></Col>
                             </Row>
                             <h2 className="mb-4">Favourite recipes</h2>
