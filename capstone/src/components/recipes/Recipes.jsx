@@ -32,7 +32,7 @@ function Recipes() {
         ingredients: [],
         recipeType: [],
         preparationTime: "",
-        sortBy: ""
+        query: ""
     })
     const prevFilter = usePrevious(filter)
     const retrieveFilteredRecipes = async () => {
@@ -51,9 +51,9 @@ function Recipes() {
             const prepTimeString = "time=" + filter.preparationTime
             queryParamString.push(prepTimeString)
         }
-        if (filter.sortBy) {
-            const sortString = "sort=" + filter.sortBy
-            queryParamString.push(sortString)
+        if (filter.query) {
+            const queryString = "query=" + filter.query
+            queryParamString.push(queryString)
         }
         console.log(queryParamString.join("&"))
         try {
@@ -107,10 +107,10 @@ function Recipes() {
             preparationTime: time
         })
     }
-    const addSortBy = (sort) => {
+    const addQuery = (query) => {
         setFilter({
             ...filter,
-            sortBy: sort
+            query: query
         })
     }
     const addProduct = (prod) => {
@@ -208,7 +208,7 @@ function Recipes() {
         }
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                if (filter.ingredients.length !== 0 || filter.recipeType.length !== 0 || filter.preparationTime || filter.sortBy) {
+                if (filter.ingredients.length !== 0 || filter.recipeType.length !== 0 || filter.preparationTime || filter.query) {
                     setOffset((prevOffSet) => prevOffSet + 12)
                 } else {
                     setPage((prevPage) => prevPage + 1)
@@ -225,8 +225,8 @@ function Recipes() {
             navigate("/auth/login")
         } else {
             dispatch(ChangeLoadingAction(true))
-            if (filter.ingredients.length !== 0 || filter.recipeType.length !== 0 || filter.preparationTime || filter.sortBy) {
-                if (prevFilter.ingredients.length !== filter.ingredients.length || prevFilter.recipeType.length !== filter.recipeType.length || prevFilter.preparationTime !== filter.preparationTime || prevFilter.sortBy !== filter.sortBy) {
+            if (filter.ingredients.length !== 0 || filter.recipeType.length !== 0 || filter.preparationTime || filter.query) {
+                if (prevFilter.ingredients.length !== filter.ingredients.length || prevFilter.recipeType.length !== filter.recipeType.length || prevFilter.preparationTime !== filter.preparationTime || prevFilter.query !== filter.query) {
                     setHasMore(true)
                     if (offset === 0) {
                         // eslint-disable-next-line no-unused-vars
@@ -266,7 +266,7 @@ function Recipes() {
     return (
         <Container className="my-5">
             <Row className="g-3">
-                <Col xs={12} lg={9} className="order-1 order-lg-0"><RecipesMain recipes={recipes} lastRecipeRef={lastRecipeRef} addSort={addSortBy} /></Col>
+                <Col xs={12} lg={9} className="order-1 order-lg-0"><RecipesMain recipes={recipes} lastRecipeRef={lastRecipeRef} addQuery={addQuery} /></Col>
                 <Col xs={12} lg={3}><RecipesFilterSection prod={products} addIng={addIngredient} removeIng={removeIngredient} filters={filter} addProd={addProduct} mealTypes={mealTypes} time={time} addType={addType} removeType={removeType} addTime={addPreparationTime} removeTime={removePreparationTime} /></Col>
             </Row>
         </Container>

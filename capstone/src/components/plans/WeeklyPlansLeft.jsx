@@ -47,7 +47,15 @@ function WeeklyPlansLeft({ selected, plans, badgeColors }) {
                                     {
                                         plans.content.map(plan => {
                                             return (
-                                                <div className={`border-start border-3 p-2 mb-3 align-content-center ${selected.weeklyPlanId === plan.weeklyPlanId ? "border text-info rounded-2" : ""}`} onClick={() => dispatch(SetSelectedPlanAction(plan))} key={plan.weeklyPlanId}>
+                                                <div role="button" onMouseEnter={(e) => {
+                                                    if (selected.weeklyPlanId !== plan.weeklyPlanId) {
+                                                        e.currentTarget.classList.add("border-start", "border-3")
+                                                    }
+                                                }} onMouseLeave={(e) => {
+                                                    if (selected.weeklyPlanId !== plan.weeklyPlanId) {
+                                                        e.currentTarget.classList.remove("border-start", "border-3")
+                                                    }
+                                                }} className={`p-2 mb-3 align-content-center ${selected.weeklyPlanId === plan.weeklyPlanId ? "border-start border-3" : ""}`} onClick={() => dispatch(SetSelectedPlanAction(plan))} key={plan.weeklyPlanId}>
                                                     <h6 className="text-secondary mb-0">{transformDate(plan.startDate)} - {transformDate(plan.endDate)} <Badge bg={badgeColors[plan.status]}>{plan.status}</Badge></h6>
                                                 </div>
                                             )

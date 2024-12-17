@@ -1,20 +1,19 @@
-import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
+import { useState } from "react";
 
 
-function RecipesMain({ recipes, lastRecipeRef, addSort }) {
-
+function RecipesMain({ recipes, lastRecipeRef, addQuery }) {
+    const [value, setValue] = useState("")
     return (
         <Card className="px-4 py-5 border-0">
-            <h1 className="ps-2">Recipes</h1>
-            <div className="d-flex justify-content-end">
-                <h3>Order by:</h3>
-                <Form.Select className="w-25 ms-3" onChange={(e) => addSort(e.target.value)}>
-                    <option>A-Z</option>
-                    <option value="time">Preparation time</option>
-                    <option value="calories">Calories</option>
-                    <option value="popularity">Popularity</option>
-                </Form.Select>
+            <h1 className="ps-3">Recipes</h1>
+            <div className="d-flex justify-content-end mb-2">
+                <InputGroup className="w-50">
+                    <Form.Control type="text" placeholder="Search a recipe" value={value} onChange={(e) => setValue(e.target.value)}>
+                    </Form.Control>
+                    <Button variant="danger" onClick={() => addQuery(value)}>Search</Button>
+                </InputGroup>
             </div>
             <Container fluid className="my-3">
                 <Row xs={1} sm={2} lg={3} xl={4} className="gx-3 gy-4">
