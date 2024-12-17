@@ -20,7 +20,7 @@ function CalendarPlan() {
                                     return (
                                         <Accordion.Item eventKey={day.dailyPlanId} className="border-0 border-bottom" key={day.dailyPlanId}>
                                             <Accordion.Header>{days[day.day]} {valuateToday(activePlan.startDate, day.day) && <Badge bg="danger" pill className="px-2 py-0 rounded-circle ms-2">Today</Badge>}</Accordion.Header>
-                                            <Accordion.Body className="px-0">
+                                            <Accordion.Body className="px-0 py-4">
                                                 <Accordion flush>
                                                     {
                                                         day.meals.map(meal => {
@@ -33,10 +33,10 @@ function CalendarPlan() {
                                                                             meal.recipe ? (
                                                                                 <div className="d-flex align-items-center">
                                                                                     <img src={meal.recipe.imageUrl} alt="dish" width={60} height={40} className="me-2" />
-                                                                                    <p className="mb-0">{meal.recipe.name}</p>
+                                                                                    <h6 className="mb-0">{meal.recipe.name}</h6>
                                                                                 </div>
                                                                             ) : (
-                                                                                <h6>No recipe</h6>
+                                                                                <h6 className="mb-0">No recipe</h6>
                                                                             )
                                                                         }
                                                                     </Accordion.Body>
