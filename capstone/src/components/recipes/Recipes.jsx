@@ -260,7 +260,10 @@ function Recipes() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, offset, filter])
     useEffect(() => {
-        retrieveCommonProducts()
+        if (token) {
+            retrieveCommonProducts()
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (

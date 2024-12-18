@@ -8,7 +8,7 @@ import HomeCentral from "./central/HomeCentral";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RemovePlansAction, RemoveUserAction, RetrieveActivePlan, RetrieveFavouritesAction, RetrieveUserAction } from "../../redux/actions";
+import { RemovePlansAction, RemoveUserAction, RetrieveActivePlan, RetrieveFavouritesAction, RetrievePlansAction, RetrieveUserAction } from "../../redux/actions";
 import { toast } from "react-toastify";
 
 export const differenceBetweenDates = (date1, date2) => {
@@ -37,6 +37,7 @@ function Home() {
                 } else {
                     dispatch(RetrieveActivePlan(token))
                     dispatch(RetrieveFavouritesAction(token))
+                    dispatch(RetrievePlansAction(token, 0))
                 }
             } else if (response.status === 401) {
                 localStorage.removeItem("token")
@@ -68,6 +69,7 @@ function Home() {
             } else {
                 dispatch(RetrieveActivePlan(token))
                 dispatch(RetrieveFavouritesAction(token))
+                dispatch(RetrievePlansAction(token, 0))
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
